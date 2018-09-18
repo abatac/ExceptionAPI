@@ -27,25 +27,46 @@ namespace ExceptionAPITest.Models
         private const string ExceptionNotes = "Notes";
         public const string Url1 = "http://yahoo.com";
         public const string Url2 = "http://google.com";
+        private const int Altitude = 100;
+        private const int Heading = 1;
+        private const double VideoLatitude = 1.1;
+        private const double VideoLongitude = 2.2;
+        private const int Speed = 300;
+        private DateTimeOffset VideoStartDateTime = DateTime.Parse("01/01/2017");
+        private DateTimeOffset VideoEndDateTime = DateTime.Parse("01/02/2017");
 
         public ExceptionEntity CreateExceptionEntity()
         {
 
-            ICollection<ExceptionUrlEntity> urls = new List<ExceptionUrlEntity>
+            var urls = new List<PictureUrlEntity>
             {
-                new ExceptionUrlEntity
+                new PictureUrlEntity
                 {
-                    MediaType = ExceptionUrlEntity.IMAGE,
                     Url = Url2
                 },
-                new ExceptionUrlEntity
+                new PictureUrlEntity
                 {
-                    MediaType = ExceptionUrlEntity.IMAGE,
                     Url = Url1
                 }
             };
 
-            ExceptionEntity exceptionEntity = new ExceptionEntity
+            var videoUrls = new List<VideoUrlEntity>
+            {
+                new VideoUrlEntity()
+                {
+                    Altitude = Altitude,
+                    StartDateTime = VideoStartDateTime,
+                    EndDateTime = VideoEndDateTime,
+                    Heading = Heading,
+                    Latitude = VideoLatitude,
+                    Longitude = VideoLongitude,
+                    Speed = Speed,
+                    MDTUrl = "www.yahoo.com/video1",
+                    Url = "www.yahoo.com/video1"
+                }
+            };
+
+            var exceptionEntity = new ExceptionEntity
             {
                 Vin = Vin,
                 AccountId = AccountId,
@@ -67,7 +88,8 @@ namespace ExceptionAPITest.Models
                 ExceptionSize = ExceptionSize,
                 ExceptionDesciption = ExceptionDescription,
                 ExceptionNotes = ExceptionNotes,
-                Urls = urls
+                PictureUrls = urls,
+                VideoUrls = videoUrls
             };
 
             return exceptionEntity;
@@ -76,29 +98,45 @@ namespace ExceptionAPITest.Models
         public ExceptionModel CreateExceptionModel()
         {
 
-            ExceptionModel exceptionModel = new ExceptionModel
+            var exceptionModel = new ExceptionModel
             {
                 Address = new Address()
-                {
-                    Street1 = Street1,
-                    Street2 = Street2,
-                    City = City,
-                    State = State,
-                    ZipCode = ZipCode,
-                    Country = Country,
-                },
+                    {
+                        Street1 = Street1,
+                        Street2 = Street2,
+                        City = City,
+                        State = State,
+                        ZipCode = ZipCode,
+                        Country = Country,
+                    },
 
                 ExceptionDetails = new ExceptionDetails()
-                {
-                    Type = ExceptiuonType,
-                    Color = ExceptionColor,
-                    Size = ExceptionSize,
-                    Description = ExceptionDescription,
-                    Notes = ExceptionNotes,
-                    PictureUrls = new string[] { Url1, Url2 }
-                },
+                    {
+                        Type = ExceptiuonType,
+                        Color = ExceptionColor,
+                        Size = ExceptionSize,
+                        Description = ExceptionDescription,
+                        Notes = ExceptionNotes,
+                        PictureUrls = new string[] { Url1, Url2 }
+                    },
 
-                Vin = Vin,
+                VideoUrls = new List<VideoUrl>
+                    {
+                    new VideoUrl()
+                        {
+                            Altitude = Altitude,
+                            StartDateTime = VideoStartDateTime,
+                            EndDateTime = VideoEndDateTime,
+                            Heading = Heading,
+                            Latitude = VideoLatitude,
+                            Longitude = VideoLongitude,
+                            Speed = Speed,
+                            MDTUrl = "www.yahoo.com/video1",
+                            Url = "www.yahoo.com/video1"
+                        }
+                    },
+
+            Vin = Vin,
                 AccountId = AccountId,
                 EventType = EventType,
                 TransactionId = TransactionId,

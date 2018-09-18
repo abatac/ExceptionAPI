@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ExceptionAPI.Models
@@ -40,5 +41,8 @@ namespace ExceptionAPI.Models
 
         [JsonProperty("exception_details")]
         public ExceptionDetails ExceptionDetails { get; set; }
+
+        [JsonProperty("media_urls")]
+        public ICollection<VideoUrl> VideoUrls { get; set; }
     }
 }

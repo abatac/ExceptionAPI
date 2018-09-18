@@ -12,9 +12,7 @@ namespace ExceptionAPI.Controllers
     [ValidateModel]
     public class ExceptionController : ControllerBase
     {
-        private readonly ExceptionDbContext _dbContext
-            
-            ;
+        private readonly ExceptionDbContext _dbContext;
         private readonly EntityTransformer _transformer = new EntityTransformer();
 
         public ExceptionController(ExceptionDbContext dbContext)
@@ -35,13 +33,16 @@ namespace ExceptionAPI.Controllers
         [ProducesResponseType(204)]
         public ActionResult<ExceptionModel> Get(string vin)
         {
-            ExceptionEntity exceptionItem = _dbContext.ExceptionItems
-                .Include(ei => ei.Urls).Where(ei => ei.Vin == vin).FirstOrDefault();
-            if (exceptionItem == null)
+            ExceptionEntity exceptionEntity = _dbContext.ExceptionItems
+                .Include(ei => ei.PictureUrls)
+                .Include(ei => ei.VideoUrls)
+                .Where(ei => ei.Vin == vin).FirstOrDefault();
+
+            if (exceptionEntity == null)
             {
                 return NoContent();
             }
-            return _transformer.TransformToExceptionModel(exceptionItem);
+            return _transformer.TransformToExceptionModel(exceptionEntity);
         }
 
         /// <summary>

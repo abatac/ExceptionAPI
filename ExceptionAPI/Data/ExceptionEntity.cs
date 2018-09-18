@@ -73,6 +73,8 @@ namespace ExceptionAPI.Data
         [Required]
         public DateTime DateCreated { get; set; }
 
-        public ICollection<ExceptionUrlEntity> Urls { get; set; }
+        public ICollection<PictureUrlEntity> PictureUrls { get; set; }
+
+        public ICollection<VideoUrlEntity> VideoUrls { get; set; }
     }
 }
