@@ -17,6 +17,10 @@ namespace ExceptionAPI.Models
         [Required]
         public int Heading { get; set; }
 
+        [JsonProperty("camera")]
+        [Required]
+        public int Camera { get; set; }
+
         [JsonProperty("start_date_time")]
         [Required]
         public DateTimeOffset StartDateTime { get; set; }

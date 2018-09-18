@@ -15,6 +15,9 @@ namespace ExceptionAPI.Data
         public int Heading { get; set; }
 
         [Required]
+        public int Camera { get; set; }
+
+        [Required]
         public DateTimeOffset StartDateTime { get; set; }
 
         [Required]

@@ -62,7 +62,8 @@ namespace ExceptionAPITest.Models
                     Longitude = VideoLongitude,
                     Speed = Speed,
                     MDTUrl = "www.yahoo.com/video1",
-                    Url = "www.yahoo.com/video1"
+                    Url = "www.yahoo.com/video1",
+                    Camera = 1
                 }
             };
 
@@ -132,7 +133,8 @@ namespace ExceptionAPITest.Models
                             Longitude = VideoLongitude,
                             Speed = Speed,
                             MDTUrl = "www.yahoo.com/video1",
-                            Url = "www.yahoo.com/video1"
+                            Url = "www.yahoo.com/video1",
+                            Camera = 1
                         }
                     },
 

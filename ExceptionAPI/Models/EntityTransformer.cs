@@ -115,7 +115,8 @@ namespace ExceptionAPI.Models
                     Longitude = videoUrl.Longitude,
                     Altitude = videoUrl.Altitude,
                     MDTUrl = videoUrl.MDTUrl,
-                    Url = videoUrl.Url
+                    Url = videoUrl.Url,
+                    Camera = videoUrl.Camera
                 });
             }
 
@@ -138,8 +139,8 @@ namespace ExceptionAPI.Models
                     Longitude = videoUrl.Longitude, 
                     Altitude = videoUrl.Altitude,
                     MDTUrl = videoUrl.MDTUrl,
-                    Url = videoUrl.Url
-
+                    Url = videoUrl.Url,
+                    Camera = videoUrl.Camera
                 });
             }
 

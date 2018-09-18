@@ -56,6 +56,8 @@ namespace ExceptionAPITest.Models
             Assert.AreEqual(videoUrl.Speed, videoUrlEntity.Speed);
             Assert.AreEqual(videoUrl.EndDateTime, videoUrlEntity.EndDateTime);
             Assert.AreEqual(videoUrl.StartDateTime, videoUrlEntity.StartDateTime);
+            Assert.AreEqual(videoUrl.Camera, videoUrlEntity.Camera);
+
 
         }
 
@@ -103,6 +105,7 @@ namespace ExceptionAPITest.Models
             Assert.AreEqual(videoUrl.Speed, videoUrlEntity.Speed);
             Assert.AreEqual(videoUrl.EndDateTime, videoUrlEntity.EndDateTime);
             Assert.AreEqual(videoUrl.StartDateTime, videoUrlEntity.StartDateTime);
+            Assert.AreEqual(videoUrl.Camera, videoUrlEntity.Camera);
         }
 
     }
