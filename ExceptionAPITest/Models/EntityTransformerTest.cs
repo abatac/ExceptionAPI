@@ -18,7 +18,7 @@ namespace ExceptionAPITest.Models
         public void TestTransformToExceptionEntity()
         {
 
-            WasteManagementEventModel exceptionModel = _testData.CreateExceptionModel();
+            WasteManagementEvent exceptionModel = _testData.CreateExceptionModel();
             WasteManagementEventEntity result = _transformer.TransformToExceptionEntity(exceptionModel);
 
             Assert.AreEqual(exceptionModel.Vin, result.Vin);
@@ -68,7 +68,7 @@ namespace ExceptionAPITest.Models
 
             WasteManagementEventEntity wasteManagementEventEntity = _testData.CreateExceptionEntity();
 
-            WasteManagementEventModel result = _transformer.TransformToExceptionModel(wasteManagementEventEntity);
+            WasteManagementEvent result = _transformer.TransformToExceptionModel(wasteManagementEventEntity);
 
             Assert.AreEqual(wasteManagementEventEntity.Vin, result.Vin);
             Assert.AreEqual(wasteManagementEventEntity.AccountId, result.AccountId);

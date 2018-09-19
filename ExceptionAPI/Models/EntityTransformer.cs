@@ -6,9 +6,9 @@ namespace ExceptionAPI.Models
 {
     public class EntityTransformer
     {
-        public WasteManagementEventModel TransformToExceptionModel(WasteManagementEventEntity entity)
+        public WasteManagementEvent TransformToExceptionModel(WasteManagementEventEntity entity)
         {
-            WasteManagementEventModel wasteManagementEventModel = new WasteManagementEventModel
+            WasteManagementEvent wasteManagementEventModel = new WasteManagementEvent
             {
                 Vin = entity.Vin,
                 AccountId = entity.AccountId,
@@ -49,7 +49,7 @@ namespace ExceptionAPI.Models
             return wasteManagementEventModel;
         }
 
-        public WasteManagementEventEntity TransformToExceptionEntity(WasteManagementEventModel model)
+        public WasteManagementEventEntity TransformToExceptionEntity(WasteManagementEvent model)
         {
             WasteManagementEventEntity wasteManagementEventEntity = new WasteManagementEventEntity
             {

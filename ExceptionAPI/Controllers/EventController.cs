@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ExceptionAPI.Controllers
 {
-    [Route("WasteManagementAPI/Event")]
+    [Route("WasteManagementEvent")]
     [ApiController]
     [ValidateModel]
     public class EventController : ControllerBase
@@ -24,7 +24,7 @@ namespace ExceptionAPI.Controllers
         /// <summary>
         /// Retrieves the Event record given the EventId number.
         /// </summary>
-        /// <param name="eventId">The EventId number of the record to be retrieved.</param>
+        /// <param name="eventId">The EventId of the record to be retrieved.</param>
         /// <returns>Returns the Event record</returns>
         /// <response code="200">Success. Returns the Event record.</response>
         /// <response code="204">No record found.</response>
@@ -32,7 +32,7 @@ namespace ExceptionAPI.Controllers
         [Produces("application/json")]
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
-        public ActionResult<WasteManagementEventModel> Get(string eventId)
+        public ActionResult<WasteManagementEvent> Get(string eventId)
         {
             WasteManagementEventEntity exceptionEntity = _dbContext.WasteManagementEvents
                 .Include(ei => ei.PictureUrls)
@@ -53,14 +53,14 @@ namespace ExceptionAPI.Controllers
         /// <remarks>
         /// Processes both ACCEPT and EXCEPTION events. exception_details and video_urls fields are optional.
         /// </remarks>
-        /// <param name="data">Request data to be submitted.</param>
+        /// <param name="data">Request data to be submitted. WasteManagementEvent model.</param>
         /// <response code="201">Success. Event record is saved.</response>
         /// <response code="422">Unprocessable entity. Validation error.</response>
         [HttpPost("Create")]
         [Produces("application/json")]
         [ProducesResponseType(201)]
         [ProducesResponseType(422, Type=typeof(ValidationResultModel))]
-        public ActionResult Create([FromBody] WasteManagementEventModel data)
+        public ActionResult Create([FromBody] WasteManagementEvent data)
         {
             bool isRecordExists = _dbContext.WasteManagementEvents.Any(o => o.EventId == data.EventId);
             if (!isRecordExists)
@@ -80,7 +80,7 @@ namespace ExceptionAPI.Controllers
         /// Updates the video urls of the specified Event record
         /// </summary>
         /// <param name="eventId">The EventId of the record to be updated.</param>
-        /// <param name="data">Request data to be submitted.</param>
+        /// <param name="data">Request data to be submitted. Array of VideoUrl model.</param>
         /// <response code="200">Success. Event record is updated.</response>
         /// <response code="422">Unprocessable entity. Validation error.</response>
         [HttpPost("Update/{eventId}")]

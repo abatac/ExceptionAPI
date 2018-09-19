@@ -73,7 +73,7 @@ namespace ExceptionAPITest.Controllers
         public void TestPost_RecordSuccessfullyCreated()
         {
             var eventId = "some-event-id";
-            WasteManagementEventModel exceptionModel = _testData.CreateExceptionModel();
+            WasteManagementEvent exceptionModel = _testData.CreateExceptionModel();
             exceptionModel.Vin = eventId;
 
             var result = _controller.Create(exceptionModel);

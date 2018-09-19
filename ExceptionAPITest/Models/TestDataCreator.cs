@@ -101,10 +101,10 @@ namespace ExceptionAPITest.Models
             return wasteManagementEventEntity;
         }
 
-        public WasteManagementEventModel CreateExceptionModel()
+        public WasteManagementEvent CreateExceptionModel()
         {
 
-            var wasteManagementEventModel = new WasteManagementEventModel
+            var wasteManagementEventModel = new WasteManagementEvent
             {
                 Address = new Address()
                     {
