@@ -40,7 +40,7 @@ namespace ExceptionAPI.Data
         [MaxLength(500)]
         public string Url { get; set; }
 
-        public int ExceptionId { get; set; }
-        public ExceptionEntity ExceptionEntity { get; set; }
+        public string EventId { get; set; }
+        public WasteManagementEventEntity WasteManagementEventEntity { get; set; }
     }
 }

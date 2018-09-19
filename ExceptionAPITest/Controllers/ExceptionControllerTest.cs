@@ -18,43 +18,43 @@ namespace ExceptionAPITest.Controllers
     public class ExceptionControllerTest
     {
 
-        private ExceptionController _controller;
+        private EventController _controller;
         private TestDataCreator _testData = new TestDataCreator();
-        private Mock<DbSet<ExceptionEntity>> _dbSetMock;
-        private Mock<ExceptionDbContext> _dbContextMock;
+        private Mock<DbSet<WasteManagementEventEntity>> _dbSetMock;
+        private Mock<WasteManagementDbContext> _dbContextMock;
 
         [TestInitialize]
         public void BeforeTest()
         {
-            var exceptionEntityList = new List<ExceptionEntity>();
-            ExceptionEntity item1 = _testData.CreateExceptionEntity();
-            item1.Vin = "VIN123";
-            ExceptionEntity item2 = _testData.CreateExceptionEntity();
-            item2.Vin = "VIN456";
+            var exceptionEntityList = new List<WasteManagementEventEntity>();
+            WasteManagementEventEntity item1 = _testData.CreateExceptionEntity();
+            item1.EventId = "141ee716-7995-442c-94a6-ce4ae6e13534";
+            WasteManagementEventEntity item2 = _testData.CreateExceptionEntity();
+            item2.EventId = "9245f8f5-9882-4e8d-a845-b5ff08e10087";
 
             exceptionEntityList.Add(item1);
             exceptionEntityList.Add(item2);
 
             var exceptionEntityQueryable = exceptionEntityList.AsQueryable();
-            _dbSetMock = new Mock<DbSet<ExceptionEntity>>();
-            _dbSetMock.As<IQueryable<ExceptionEntity>>().Setup(m => m.Expression).Returns(exceptionEntityQueryable.Expression);
-            _dbSetMock.As<IQueryable<ExceptionEntity>>().Setup(m => m.ElementType).Returns(exceptionEntityQueryable.ElementType);
-            _dbSetMock.As<IQueryable<ExceptionEntity>>().Setup(m => m.GetEnumerator()).Returns(exceptionEntityQueryable.GetEnumerator);
-            _dbSetMock.As<IQueryable<ExceptionEntity>>().Setup(m => m.Provider).Returns(exceptionEntityQueryable.Provider);
+            _dbSetMock = new Mock<DbSet<WasteManagementEventEntity>>();
+            _dbSetMock.As<IQueryable<WasteManagementEventEntity>>().Setup(m => m.Expression).Returns(exceptionEntityQueryable.Expression);
+            _dbSetMock.As<IQueryable<WasteManagementEventEntity>>().Setup(m => m.ElementType).Returns(exceptionEntityQueryable.ElementType);
+            _dbSetMock.As<IQueryable<WasteManagementEventEntity>>().Setup(m => m.GetEnumerator()).Returns(exceptionEntityQueryable.GetEnumerator);
+            _dbSetMock.As<IQueryable<WasteManagementEventEntity>>().Setup(m => m.Provider).Returns(exceptionEntityQueryable.Provider);
 
-            _dbContextMock = new Mock<ExceptionDbContext>();
+            _dbContextMock = new Mock<WasteManagementDbContext>();
             
-            _dbContextMock.Setup(i => i.ExceptionItems).Returns(_dbSetMock.Object);
+            _dbContextMock.Setup(i => i.WasteManagementEvents).Returns(_dbSetMock.Object);
 
-            _controller = new ExceptionController(_dbContextMock.Object);
+            _controller = new EventController(_dbContextMock.Object);
         }
 
         [TestMethod]
         public void TestGet_ReturnsOK()
         {
-            var vinWithRecord = "VIN123";
+            var eventId = "141ee716-7995-442c-94a6-ce4ae6e13534";
 
-            var result = _controller.Get(vinWithRecord);
+            var result = _controller.Get(eventId);
 
             Assert.IsNotNull(result.Value);
         }
@@ -62,37 +62,25 @@ namespace ExceptionAPITest.Controllers
         [TestMethod]
         public void TestGet_ReturnsNotFound()
         {
-            var vinNoRecord = "VIN123456";
+            var eventId = "some-event-id";
 
-            var result = _controller.Get(vinNoRecord);
+            var result = _controller.Get(eventId);
 
             Assert.AreEqual(typeof(NoContentResult), result.Result.GetType());
         }
 
         [TestMethod]
-        public void TestPost_RecordAlreadyExists()
-        {
-            var vinWithRecord = "VIN123";
-            ExceptionModel exceptionModel = _testData.CreateExceptionModel();
-            exceptionModel.Vin = vinWithRecord;
-
-            var result = _controller.Post(exceptionModel);
-
-            Assert.AreEqual(typeof(ValidationFailedResult), result.Result.GetType());
-        }
-
-        [TestMethod]
         public void TestPost_RecordSuccessfullyCreated()
         {
-            var vinNoRecord = "VIN123456";
-            ExceptionModel exceptionModel = _testData.CreateExceptionModel();
-            exceptionModel.Vin = vinNoRecord;
+            var eventId = "some-event-id";
+            WasteManagementEventModel exceptionModel = _testData.CreateExceptionModel();
+            exceptionModel.Vin = eventId;
 
-            var result = _controller.Post(exceptionModel);
+            var result = _controller.Create(exceptionModel);
 
-            _dbSetMock.Verify(mock => mock.Add(It.IsAny<ExceptionEntity>()), Times.Once());
+            _dbSetMock.Verify(mock => mock.Add(It.IsAny<WasteManagementEventEntity>()), Times.Once());
             _dbContextMock.Verify(mock => mock.SaveChanges(), Times.Once());
-            Assert.AreEqual(typeof(CreatedResult), result.Result.GetType());
+            Assert.AreEqual(typeof(StatusCodeResult), result.GetType());
         }
     }
 }

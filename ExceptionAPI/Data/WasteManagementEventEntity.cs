@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExceptionAPI.Data
 {
-    public class ExceptionEntity
+    public class WasteManagementEventEntity
     {
+        [Required]
+        [MaxLength(50)]
         [Key]
-        public int ExceptionId { get; set; }
+        public string EventId { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -55,23 +57,10 @@ namespace ExceptionAPI.Data
         [MaxLength(50)]
         public string Country { get; set; }
 
-        [MaxLength(50)]
-        public string ExceptionType { get; set; }
-
-        [MaxLength(50)]
-        public string ExceptionColor { get; set; }
-
-        [MaxLength(50)]
-        public string ExceptionSize { get; set; }
-
-        [MaxLength(500)]
-        public string ExceptionDesciption { get; set; }
-
-        [MaxLength(500)]
-        public string ExceptionNotes { get; set; }
-
         [Required]
         public DateTime DateCreated { get; set; }
+
+        public ExceptionDetailsEntity ExceptionDetailsEntity { get; set; }
 
         public ICollection<PictureUrlEntity> PictureUrls { get; set; }
 

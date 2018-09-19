@@ -17,23 +17,23 @@ namespace ExceptionAPI.Models
         [Required]
         public int Heading { get; set; }
 
-        [JsonProperty("camera")]
+        [JsonProperty("camera_number")]
         [Required]
         public int Camera { get; set; }
 
-        [JsonProperty("start_date_time")]
+        [JsonProperty("start_datetime")]
         [Required]
         public DateTime StartDateTime { get; set; }
 
-        [JsonProperty("end_date_time")]
+        [JsonProperty("end_datetime")]
         [Required]
         public DateTime EndDateTime { get; set; }
 
-        [JsonProperty("latitude")]
+        [JsonProperty("lat")]
         [Required]
         public double Latitude { get; set; }
 
-        [JsonProperty("longitude")]
+        [JsonProperty("lon")]
         [Required]
         public double Longitude { get; set; }
 
@@ -41,12 +41,12 @@ namespace ExceptionAPI.Models
         [Required]
         public int Altitude { get; set; }
 
-        [JsonProperty("mdt_url")]
+        [JsonProperty("download_url")]
         [Required]
         [MaxLength(500)]
         public string MDTUrl { get; set; }
 
-        [JsonProperty("url")]
+        [JsonProperty("play_url")]
         [Required]
         [MaxLength(500)]
         public string Url { get; set; }

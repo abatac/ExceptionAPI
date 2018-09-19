@@ -19,7 +19,7 @@ namespace ExceptionAPI
 
                 try
                 {
-                    var context = services.GetRequiredService<ExceptionDbContext>();
+                    var context = services.GetRequiredService<WasteManagementDbContext>();
                     context.Database.EnsureCreated();
                 }
                 catch (Exception ex)

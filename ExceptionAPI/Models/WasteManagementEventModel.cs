@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExceptionAPI.Models
 {
-    public class ExceptionModel
+    public class WasteManagementEventModel
     {
         [JsonProperty("vin")]
         [Required]
@@ -15,6 +15,11 @@ namespace ExceptionAPI.Models
         [JsonProperty("account_id")]
         [Required]
         public long AccountId { get; set; }
+
+        [JsonProperty("event_id")]
+        [Required]
+        [MaxLength(50)]
+        public string EventId { get; set; }
 
         [JsonProperty("event_type")]
         [Required]
@@ -42,7 +47,7 @@ namespace ExceptionAPI.Models
         [JsonProperty("exception_details")]
         public ExceptionDetails ExceptionDetails { get; set; }
 
-        [JsonProperty("media_urls")]
+        [JsonProperty("video_urls")]
         public ICollection<VideoUrl> VideoUrls { get; set; }
     }
 }

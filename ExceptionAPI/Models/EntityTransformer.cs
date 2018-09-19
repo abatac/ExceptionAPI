@@ -6,84 +6,89 @@ namespace ExceptionAPI.Models
 {
     public class EntityTransformer
     {
-        public ExceptionModel TransformToExceptionModel(ExceptionEntity exceptionEntity)
+        public WasteManagementEventModel TransformToExceptionModel(WasteManagementEventEntity entity)
         {
-            ExceptionModel exceptionModel = new ExceptionModel
+            WasteManagementEventModel wasteManagementEventModel = new WasteManagementEventModel
             {
-                Vin = exceptionEntity.Vin,
-                AccountId = exceptionEntity.AccountId,
-                EventType = exceptionEntity.EventType,
-                TransactionId = exceptionEntity.TransactionId,
-                DateTime = exceptionEntity.DateTime,
+                Vin = entity.Vin,
+                AccountId = entity.AccountId,
+                EventId = entity.EventId,
+                EventType = entity.EventType,
+                TransactionId = entity.TransactionId,
+                DateTime = entity.DateTime,
                 Address = new Address()
                 {
-                    Street1 = exceptionEntity.Street1,
-                    Street2 = exceptionEntity.Street2,
-                    City = exceptionEntity.City,
-                    ZipCode = exceptionEntity.ZipCode,
-                    State = exceptionEntity.State,
-                    Country = exceptionEntity.Country,
+                    Street1 = entity.Street1,
+                    Street2 = entity.Street2,
+                    City = entity.City,
+                    ZipCode = entity.ZipCode,
+                    State = entity.State,
+                    Country = entity.Country,
                 },
-                Latitude = exceptionEntity.Latitude,
-                Longitude = exceptionEntity.Longitude
+                Latitude = entity.Latitude,
+                Longitude = entity.Longitude
             };
      
-            if (exceptionEntity.ExceptionType != null)
+            if (entity.ExceptionDetailsEntity != null)
             {
-                exceptionModel.ExceptionDetails = new ExceptionDetails
+                wasteManagementEventModel.ExceptionDetails = new ExceptionDetails
                 {
-                    Type = exceptionEntity.ExceptionType,
-                    Color = exceptionEntity.ExceptionColor,
-                    Size = exceptionEntity.ExceptionSize,
-                    Description = exceptionEntity.ExceptionDesciption,
-                    Notes = exceptionEntity.ExceptionNotes,
-                    PictureUrls = TransformExceptionUrlEnityListToArray(exceptionEntity.PictureUrls)
+                    Type = entity.ExceptionDetailsEntity.Type,
+                    Color = entity.ExceptionDetailsEntity.Color,
+                    Size = entity.ExceptionDetailsEntity.Size,
+                    Description = entity.ExceptionDetailsEntity.Description,
+                    Notes = entity.ExceptionDetailsEntity.Notes,
+                    PictureUrls = TransformExceptionUrlEnityListToArray(entity.PictureUrls)
                 };
             }
 
-            if (exceptionEntity.VideoUrls != null)
+            if (entity.VideoUrls != null)
             {
-                exceptionModel.VideoUrls = TransformToVideoUrlList(exceptionEntity.VideoUrls);
+                wasteManagementEventModel.VideoUrls = TransformToVideoUrlList(entity.VideoUrls);
             }
-            return exceptionModel;
+            return wasteManagementEventModel;
         }
 
-        public ExceptionEntity TransformToExceptionEntity(ExceptionModel exceptionModel)
+        public WasteManagementEventEntity TransformToExceptionEntity(WasteManagementEventModel model)
         {
-            ExceptionEntity exceptionEntity = new ExceptionEntity
+            WasteManagementEventEntity wasteManagementEventEntity = new WasteManagementEventEntity
             {
-                Vin = exceptionModel.Vin,
-                AccountId = exceptionModel.AccountId,
-                EventType = exceptionModel.EventType,
-                TransactionId = exceptionModel.TransactionId,
-                DateTime = exceptionModel.DateTime,
-                Street1 = exceptionModel.Address.Street1,
-                Street2 = exceptionModel.Address.Street2,
-                City = exceptionModel.Address.City,
-                ZipCode = exceptionModel.Address.ZipCode,
-                State = exceptionModel.Address.State,
-                Country = exceptionModel.Address.Country,
-                Latitude = exceptionModel.Latitude,
-                Longitude = exceptionModel.Longitude,
+                Vin = model.Vin,
+                AccountId = model.AccountId,
+                EventId = model.EventId,
+                EventType = model.EventType,
+                TransactionId = model.TransactionId,
+                DateTime = model.DateTime,
+                Street1 = model.Address.Street1,
+                Street2 = model.Address.Street2,
+                City = model.Address.City,
+                ZipCode = model.Address.ZipCode,
+                State = model.Address.State,
+                Country = model.Address.Country,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude,
                 DateCreated = System.DateTime.Now
             };
 
-            if (exceptionModel.ExceptionDetails != null)
+            if (model.ExceptionDetails != null)
             {
-                exceptionEntity.ExceptionType = exceptionModel.ExceptionDetails.Type;
-                exceptionEntity.ExceptionColor = exceptionModel.ExceptionDetails.Color;
-                exceptionEntity.ExceptionSize = exceptionModel.ExceptionDetails.Size;
-                exceptionEntity.ExceptionDesciption = exceptionModel.ExceptionDetails.Description;
-                exceptionEntity.ExceptionNotes = exceptionModel.ExceptionDetails.Notes;
-                exceptionEntity.PictureUrls = TransformToExceptionUrlEntityList(exceptionModel.ExceptionDetails.PictureUrls);
+                wasteManagementEventEntity.ExceptionDetailsEntity = new ExceptionDetailsEntity
+                {
+                    Type = model.ExceptionDetails.Type,
+                    Color = model.ExceptionDetails.Color,
+                    Size = model.ExceptionDetails.Size,
+                    Description = model.ExceptionDetails.Description,
+                    Notes = model.ExceptionDetails.Notes
+                };
+                wasteManagementEventEntity.PictureUrls = TransformToExceptionUrlEntityList(model.ExceptionDetails.PictureUrls);
             }
-
-            if (exceptionModel.VideoUrls != null)
+             
+            if (model.VideoUrls != null)
             {
-                exceptionEntity.VideoUrls = TransformToVideoUrlEntityList(exceptionModel.VideoUrls);
+                wasteManagementEventEntity.VideoUrls = TransformToVideoUrlEntityList(model.EventId, model.VideoUrls);
             }
           
-            return exceptionEntity;
+            return wasteManagementEventEntity;
         }
 
         protected ICollection<PictureUrlEntity> TransformToExceptionUrlEntityList(String[] pictureUrls)
@@ -99,7 +104,7 @@ namespace ExceptionAPI.Models
             return urls;
         }
 
-        protected ICollection<VideoUrlEntity> TransformToVideoUrlEntityList(ICollection<VideoUrl> videoUrls)
+        public ICollection<VideoUrlEntity> TransformToVideoUrlEntityList(string eventId, ICollection<VideoUrl> videoUrls)
         {
             var urls = new List<VideoUrlEntity>();
 
@@ -107,6 +112,7 @@ namespace ExceptionAPI.Models
             {
                 urls.Add(new VideoUrlEntity()
                 {
+                    EventId = eventId,
                     Speed = videoUrl.Speed,
                     Heading = videoUrl.Heading,
                     StartDateTime = videoUrl.StartDateTime,
@@ -123,7 +129,7 @@ namespace ExceptionAPI.Models
             return urls;
         }
 
-        protected ICollection<VideoUrl> TransformToVideoUrlList(ICollection<VideoUrlEntity> videoUrls)
+        public ICollection<VideoUrl> TransformToVideoUrlList(ICollection<VideoUrlEntity> videoUrls)
         {
             var urls = new List<VideoUrl>();
 

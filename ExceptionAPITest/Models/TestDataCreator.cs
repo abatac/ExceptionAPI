@@ -10,6 +10,7 @@ namespace ExceptionAPITest.Models
     {
         private const string Vin = "123ABC";
         private const int AccountId = 123456;
+        private const string EventId = "2bf1478e-f543-4354-9726-99af3820617b";
         private const string EventType = "ACCEPTED";
         private const string TransactionId = "8466583";
         private const double Longitude = 111.123;
@@ -35,7 +36,7 @@ namespace ExceptionAPITest.Models
         private DateTime VideoStartDateTime = DateTime.Parse("01/01/2017");
         private DateTime VideoEndDateTime = DateTime.Parse("01/02/2017");
 
-        public ExceptionEntity CreateExceptionEntity()
+        public WasteManagementEventEntity CreateExceptionEntity()
         {
 
             var urls = new List<PictureUrlEntity>
@@ -67,16 +68,16 @@ namespace ExceptionAPITest.Models
                 }
             };
 
-            var exceptionEntity = new ExceptionEntity
+            var wasteManagementEventEntity = new WasteManagementEventEntity
             {
                 Vin = Vin,
+                EventId = EventId,
                 AccountId = AccountId,
                 EventType = EventType,
                 TransactionId = TransactionId,
                 DateTime = System.DateTime.Now,
                 Longitude = Longitude,
                 Latitude = Latitude,
-
                 Street1 = Street1,
                 Street2 = Street2,
                 City = City,
@@ -84,22 +85,26 @@ namespace ExceptionAPITest.Models
                 ZipCode = ZipCode,
                 Country = Country,
 
-                ExceptionType = ExceptiuonType,
-                ExceptionColor = ExceptionColor,
-                ExceptionSize = ExceptionSize,
-                ExceptionDesciption = ExceptionDescription,
-                ExceptionNotes = ExceptionNotes,
+                ExceptionDetailsEntity = new ExceptionDetailsEntity()
+                {
+                    Type = ExceptiuonType,
+                    Color = ExceptionColor,
+                    Size = ExceptionSize,
+                    Description = ExceptionDescription,
+                    Notes = ExceptionNotes,
+                },
+              
                 PictureUrls = urls,
                 VideoUrls = videoUrls
             };
 
-            return exceptionEntity;
+            return wasteManagementEventEntity;
         }
 
-        public ExceptionModel CreateExceptionModel()
+        public WasteManagementEventModel CreateExceptionModel()
         {
 
-            var exceptionModel = new ExceptionModel
+            var wasteManagementEventModel = new WasteManagementEventModel
             {
                 Address = new Address()
                     {
@@ -138,15 +143,16 @@ namespace ExceptionAPITest.Models
                         }
                     },
 
-            Vin = Vin,
+                Vin = Vin,
                 AccountId = AccountId,
+                EventId = EventId,
                 EventType = EventType,
                 TransactionId = TransactionId,
                 DateTime = System.DateTime.Now,
                 Longitude = Longitude,
                 Latitude = Latitude
             };
-            return exceptionModel;
+            return wasteManagementEventModel;
         }
     }
 }
