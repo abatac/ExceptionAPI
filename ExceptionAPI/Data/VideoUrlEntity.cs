@@ -18,10 +18,10 @@ namespace ExceptionAPI.Data
         public int Camera { get; set; }
 
         [Required]
-        public DateTimeOffset StartDateTime { get; set; }
+        public DateTime StartDateTime { get; set; }
 
         [Required]
-        public DateTimeOffset EndDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
 
         [Required]
         public double Latitude { get; set; }

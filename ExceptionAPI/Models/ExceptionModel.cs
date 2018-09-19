@@ -27,7 +27,7 @@ namespace ExceptionAPI.Models
         public string TransactionId { get; set; }
 
         [JsonProperty("date_time")]
-        public DateTimeOffset DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
         [JsonProperty("address")]
         [Required]

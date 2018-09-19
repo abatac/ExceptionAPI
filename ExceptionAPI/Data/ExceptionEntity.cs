@@ -25,7 +25,7 @@ namespace ExceptionAPI.Data
         public string TransactionId { get; set; }
 
         [Required]
-        public DateTimeOffset DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
         [Required]
         public double Latitude { get; set; }

@@ -23,11 +23,11 @@ namespace ExceptionAPI.Models
 
         [JsonProperty("start_date_time")]
         [Required]
-        public DateTimeOffset StartDateTime { get; set; }
+        public DateTime StartDateTime { get; set; }
 
         [JsonProperty("end_date_time")]
         [Required]
-        public DateTimeOffset EndDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
 
         [JsonProperty("latitude")]
         [Required]

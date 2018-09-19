@@ -32,8 +32,8 @@ namespace ExceptionAPITest.Models
         private const double VideoLatitude = 1.1;
         private const double VideoLongitude = 2.2;
         private const int Speed = 300;
-        private DateTimeOffset VideoStartDateTime = DateTime.Parse("01/01/2017");
-        private DateTimeOffset VideoEndDateTime = DateTime.Parse("01/02/2017");
+        private DateTime VideoStartDateTime = DateTime.Parse("01/01/2017");
+        private DateTime VideoEndDateTime = DateTime.Parse("01/02/2017");
 
         public ExceptionEntity CreateExceptionEntity()
         {
