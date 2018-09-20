@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExceptionAPI\ExceptionAPI.csproj" />
+    <ProjectReference Include="..\ExceptionAPI\WasteManagementAPI.csproj" />
   </ItemGroup>
 
 </Project>

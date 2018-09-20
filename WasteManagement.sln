@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionAPI", "ExceptionAPI\ExceptionAPI.csproj", "{C41FCEF7-C3B4-4F73-A290-3B24AF977559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasteManagementAPI", "ExceptionAPI\WasteManagementAPI.csproj", "{C41FCEF7-C3B4-4F73-A290-3B24AF977559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionAPITest", "ExceptionAPITest\ExceptionAPITest.csproj", "{E24C152C-E0EF-4183-873A-D5B02C2EC5B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasteManagementAPITest", "ExceptionAPITest\WasteManagementAPITest.csproj", "{E24C152C-E0EF-4183-873A-D5B02C2EC5B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
