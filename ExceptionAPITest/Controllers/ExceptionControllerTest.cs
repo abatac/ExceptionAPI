@@ -27,9 +27,9 @@ namespace ExceptionAPITest.Controllers
         public void BeforeTest()
         {
             var exceptionEntityList = new List<WasteManagementEventEntity>();
-            WasteManagementEventEntity item1 = _testData.CreateExceptionEntity();
+            WasteManagementEventEntity item1 = _testData.CreateWasteManagementEvent();
             item1.EventId = "141ee716-7995-442c-94a6-ce4ae6e13534";
-            WasteManagementEventEntity item2 = _testData.CreateExceptionEntity();
+            WasteManagementEventEntity item2 = _testData.CreateWasteManagementEvent();
             item2.EventId = "9245f8f5-9882-4e8d-a845-b5ff08e10087";
 
             exceptionEntityList.Add(item1);

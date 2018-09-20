@@ -12,18 +12,6 @@ namespace ExceptionAPI.Models
         [MaxLength(50)]
         public string Type { get; set; }
 
-        [JsonProperty("color")]
-        [Display(Name = "color")]
-        [Required]
-        [MaxLength(50)]
-        public string Color { get; set; }
-
-        [JsonProperty("size")]
-        [Display(Name = "size")]
-        [Required]
-        [MaxLength(50)]
-        public string Size { get; set; }
-
         [JsonProperty("description")]
         [Display(Name = "description")]
         [MaxLength(500)]
@@ -33,6 +21,22 @@ namespace ExceptionAPI.Models
         [Display(Name = "notes")]
         [MaxLength(500)]
         public string Notes { get; set; }
+
+        [JsonProperty("max_weight_allowed")]
+        [Display(Name = "max_weight_allowed")]
+        [Required]
+        public int MaximumWeightAllowed { get; set; }
+
+        [JsonProperty("actual_weight")]
+        [Display(Name = "actual_weight")]
+        [Required]
+        public int ActualWeight { get; set; }
+
+        [JsonProperty("weight_units")]
+        [Display(Name = "weight_units")]
+        [MaxLength(50)]
+        [Required]
+        public string WeightUnits { get; set; }
 
         [JsonProperty("picture_urls")]
         [Display(Name = "picture_urls")]

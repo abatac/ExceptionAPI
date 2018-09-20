@@ -2,7 +2,7 @@
 
 namespace ExceptionAPI.Data
 {
-    public class PictureUrlEntity
+    public class ImageEntity
     {
 
         [Key]
@@ -10,7 +10,7 @@ namespace ExceptionAPI.Data
 
         [Required]
         [MaxLength(500)]
-        public string Url { get; set; }
+        public string ImageURL { get; set; }
 
         public string EventId { get; set; }
         public WasteManagementEventEntity WasteManagementEventEntity { get; set; }

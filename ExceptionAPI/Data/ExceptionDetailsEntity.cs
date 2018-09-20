@@ -12,20 +12,22 @@ namespace ExceptionAPI.Data
         public string Type { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Color { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string Size { get; set; }
-
-        [Required]
         [MaxLength(500)]
         public string Description { get; set; }
 
         [Required]
         [MaxLength(500)]
         public string Notes { get; set; }
+
+        [Required]
+        public int MaximumWeightAllowed { get; set; }
+
+        [Required]
+        public int ActualWeight { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string WeightUnits { get; set; }
 
         [Required]
         public string EventId { get; set; }

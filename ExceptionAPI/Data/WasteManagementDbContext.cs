@@ -14,31 +14,31 @@ namespace ExceptionAPI.Data
         }
 
         public virtual DbSet<WasteManagementEventEntity> WasteManagementEvents { get; set; }
-        public virtual DbSet<PictureUrlEntity> PictureUrls { get; set; }
-        public virtual DbSet<VideoUrlEntity> VideoUrls { get; set; }
+        public virtual DbSet<ImageEntity> Images { get; set; }
+        public virtual DbSet<VideoEntity> Videos { get; set; }
         public virtual DbSet<ExceptionDetailsEntity> ExceptionDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WasteManagementEventEntity>().ToTable("WasteManagementEvent");
-            modelBuilder.Entity<WasteManagementEventEntity>().HasOne(wme => wme.ExceptionDetailsEntity);
-            modelBuilder.Entity<WasteManagementEventEntity>().HasMany(wme => wme.PictureUrls);
-            modelBuilder.Entity<WasteManagementEventEntity>().HasMany(wme => wme.VideoUrls);
+            modelBuilder.Entity<WasteManagementEventEntity>().HasOne(wme => wme.ExceptionDetails);
+            modelBuilder.Entity<WasteManagementEventEntity>().HasMany(wme => wme.Images);
+            modelBuilder.Entity<WasteManagementEventEntity>().HasMany(wme => wme.Videos);
 
             modelBuilder.Entity<ExceptionDetailsEntity>().ToTable("ExceptionDetails");
             modelBuilder.Entity<ExceptionDetailsEntity>().HasOne(ede => ede.WasteManagementEventEntity)
-                .WithOne(wme => wme.ExceptionDetailsEntity).HasForeignKey<ExceptionDetailsEntity>("EventId");
+                .WithOne(wme => wme.ExceptionDetails).HasForeignKey<ExceptionDetailsEntity>("EventId");
 
-            modelBuilder.Entity<PictureUrlEntity>().ToTable("PictureUrl");
-            modelBuilder.Entity<PictureUrlEntity>()
+            modelBuilder.Entity<ImageEntity>().ToTable("Images");
+            modelBuilder.Entity<ImageEntity>()
                 .HasOne(pue => pue.WasteManagementEventEntity)
-                .WithMany(pue => pue.PictureUrls)
+                .WithMany(pue => pue.Images)
                 .HasForeignKey(wme => wme.EventId);
 
-            modelBuilder.Entity<VideoUrlEntity>().ToTable("VideoUrl");
-            modelBuilder.Entity<VideoUrlEntity>()
+            modelBuilder.Entity<VideoEntity>().ToTable("Videos");
+            modelBuilder.Entity<VideoEntity>()
                 .HasOne(ei => ei.WasteManagementEventEntity)
-                .WithMany(emi => emi.VideoUrls)
+                .WithMany(emi => emi.Videos)
                 .HasForeignKey(emi => emi.EventId);
 
         }

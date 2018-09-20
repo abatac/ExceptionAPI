@@ -29,22 +29,25 @@ namespace ExceptionAPI.Models
                 Longitude = entity.Longitude
             };
      
-            if (entity.ExceptionDetailsEntity != null)
+            if (entity.ExceptionDetails != null)
             {
+                wasteManagementEventModel.ContainerColor = entity.ContainerColor;
+                wasteManagementEventModel.ContainerSize = entity.ContainerSize;
                 wasteManagementEventModel.ExceptionDetails = new ExceptionDetails
                 {
-                    Type = entity.ExceptionDetailsEntity.Type,
-                    Color = entity.ExceptionDetailsEntity.Color,
-                    Size = entity.ExceptionDetailsEntity.Size,
-                    Description = entity.ExceptionDetailsEntity.Description,
-                    Notes = entity.ExceptionDetailsEntity.Notes,
-                    PictureUrls = TransformExceptionUrlEnityListToArray(entity.PictureUrls)
+                    Type = entity.ExceptionDetails.Type,
+                    Description = entity.ExceptionDetails.Description,
+                    Notes = entity.ExceptionDetails.Notes,
+                    MaximumWeightAllowed = entity.ExceptionDetails.MaximumWeightAllowed,
+                    ActualWeight = entity.ExceptionDetails.ActualWeight,
+                    WeightUnits = entity.ExceptionDetails.WeightUnits,
+                    PictureUrls = TransformExceptionUrlEnityListToArray(entity.Images)
                 };
             }
 
-            if (entity.VideoUrls != null)
+            if (entity.Videos != null)
             {
-                wasteManagementEventModel.VideoUrls = TransformToVideoUrlList(entity.VideoUrls);
+                wasteManagementEventModel.VideoUrls = TransformToVideoUrlList(entity.Videos);
             }
             return wasteManagementEventModel;
         }
@@ -67,50 +70,53 @@ namespace ExceptionAPI.Models
                 Country = model.Address.Country,
                 Latitude = model.Latitude,
                 Longitude = model.Longitude,
-                DateCreated = System.DateTime.Now
+                DateCreated = System.DateTime.Now,
+                ContainerColor = model.ContainerColor,
+                ContainerSize = model.ContainerSize,
             };
 
             if (model.ExceptionDetails != null)
             {
-                wasteManagementEventEntity.ExceptionDetailsEntity = new ExceptionDetailsEntity
+                wasteManagementEventEntity.ExceptionDetails = new ExceptionDetailsEntity
                 {
                     Type = model.ExceptionDetails.Type,
-                    Color = model.ExceptionDetails.Color,
-                    Size = model.ExceptionDetails.Size,
                     Description = model.ExceptionDetails.Description,
+                    MaximumWeightAllowed = model.ExceptionDetails.MaximumWeightAllowed,
+                    WeightUnits = model.ExceptionDetails.WeightUnits,
+                    ActualWeight = model.ExceptionDetails.ActualWeight,
                     Notes = model.ExceptionDetails.Notes
                 };
-                wasteManagementEventEntity.PictureUrls = TransformToExceptionUrlEntityList(model.ExceptionDetails.PictureUrls);
+                wasteManagementEventEntity.Images = TransformToExceptionUrlEntityList(model.ExceptionDetails.PictureUrls);
             }
              
             if (model.VideoUrls != null)
             {
-                wasteManagementEventEntity.VideoUrls = TransformToVideoUrlEntityList(model.EventId, model.VideoUrls);
+                wasteManagementEventEntity.Videos = TransformToVideoUrlEntityList(model.EventId, model.VideoUrls);
             }
           
             return wasteManagementEventEntity;
         }
 
-        protected ICollection<PictureUrlEntity> TransformToExceptionUrlEntityList(String[] pictureUrls)
+        protected ICollection<ImageEntity> TransformToExceptionUrlEntityList(String[] pictureUrls)
         {
-            var urls = new List<PictureUrlEntity>();
+            var urls = new List<ImageEntity>();
             foreach (String pictureUrl in pictureUrls)
             {
-                urls.Add(new PictureUrlEntity
+                urls.Add(new ImageEntity
                 {
-                    Url = pictureUrl
+                    ImageURL = pictureUrl
                 });
             }
             return urls;
         }
 
-        public ICollection<VideoUrlEntity> TransformToVideoUrlEntityList(string eventId, ICollection<VideoUrl> videoUrls)
+        public ICollection<VideoEntity> TransformToVideoUrlEntityList(string eventId, ICollection<VideoUrl> videoUrls)
         {
-            var urls = new List<VideoUrlEntity>();
+            var urls = new List<VideoEntity>();
 
             foreach (VideoUrl videoUrl in videoUrls)
             {
-                urls.Add(new VideoUrlEntity()
+                urls.Add(new VideoEntity()
                 {
                     EventId = eventId,
                     Speed = videoUrl.Speed,
@@ -121,19 +127,19 @@ namespace ExceptionAPI.Models
                     Longitude = videoUrl.Longitude,
                     Altitude = videoUrl.Altitude,
                     MDTUrl = videoUrl.MDTUrl,
-                    Url = videoUrl.Url,
-                    Camera = videoUrl.Camera
+                    VideoURL = videoUrl.Url,
+                    CameraChannel = videoUrl.Camera
                 });
             }
 
             return urls;
         }
 
-        public ICollection<VideoUrl> TransformToVideoUrlList(ICollection<VideoUrlEntity> videoUrls)
+        public ICollection<VideoUrl> TransformToVideoUrlList(ICollection<VideoEntity> videoUrls)
         {
             var urls = new List<VideoUrl>();
 
-            foreach (VideoUrlEntity videoUrl in videoUrls)
+            foreach (VideoEntity videoUrl in videoUrls)
             {
                 urls.Add(new VideoUrl()
                 {
@@ -145,21 +151,21 @@ namespace ExceptionAPI.Models
                     Longitude = videoUrl.Longitude, 
                     Altitude = videoUrl.Altitude,
                     MDTUrl = videoUrl.MDTUrl,
-                    Url = videoUrl.Url,
-                    Camera = videoUrl.Camera
+                    Url = videoUrl.VideoURL,
+                    Camera = videoUrl.CameraChannel
                 });
             }
 
             return urls;
         }
 
-        protected string[] TransformExceptionUrlEnityListToArray(ICollection<PictureUrlEntity> exceptionUrls)
+        protected string[] TransformExceptionUrlEnityListToArray(ICollection<ImageEntity> exceptionUrls)
         {
             var urls = new List<String>();
-            foreach (PictureUrlEntity exceptionUrl in exceptionUrls)
+            foreach (ImageEntity exceptionUrl in exceptionUrls)
             {
               
-               urls.Add(exceptionUrl.Url);
+               urls.Add(exceptionUrl.ImageURL);
                 
             }
             return urls.ToArray();

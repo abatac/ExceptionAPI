@@ -35,9 +35,9 @@ namespace ExceptionAPI.Controllers
         public ActionResult<WasteManagementEvent> Get(string eventId)
         {
             WasteManagementEventEntity exceptionEntity = _dbContext.WasteManagementEvents
-                .Include(ei => ei.PictureUrls)
-                .Include(ei => ei.VideoUrls)
-                .Include(ei => ei.ExceptionDetailsEntity)
+                .Include(ei => ei.Images)
+                .Include(ei => ei.Videos)
+                .Include(ei => ei.ExceptionDetails)
                 .Where(ei => ei.EventId == eventId).FirstOrDefault();
 
             if (exceptionEntity == null)
@@ -91,8 +91,8 @@ namespace ExceptionAPI.Controllers
         {
             var isRecordExists = _dbContext.WasteManagementEvents.Any(o => o.EventId == eventId);
             if (isRecordExists) {
-                ICollection<VideoUrlEntity> videoUrls = _transformer.TransformToVideoUrlEntityList(eventId, data);
-                _dbContext.VideoUrls.AddRange(videoUrls);
+                ICollection<VideoEntity> videoUrls = _transformer.TransformToVideoUrlEntityList(eventId, data);
+                _dbContext.Videos.AddRange(videoUrls);
                 _dbContext.SaveChanges();
                 return new OkResult();
             } else

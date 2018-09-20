@@ -22,10 +22,13 @@ namespace ExceptionAPITest.Models
         private const string ZipCode = "ZipCode";
         private const string Country = "Country";
         private const string ExceptiuonType = "ExceptionType";
-        private const string ExceptionColor = "Color";
-        private const string ExceptionSize = "Size";
+        private const string ContainerColor = "Color";
+        private const string ContainerSize = "Size";
         private const string ExceptionDescription = "Description";
         private const string ExceptionNotes = "Notes";
+        private const int MaximumWeightAllowed = 100;
+        private const int ActualWeight = 99;
+        private const string WeightUnits = "lbs";
         public const string Url1 = "http://yahoo.com";
         public const string Url2 = "http://google.com";
         private const int Altitude = 100;
@@ -36,24 +39,24 @@ namespace ExceptionAPITest.Models
         private DateTime VideoStartDateTime = DateTime.Parse("01/01/2017");
         private DateTime VideoEndDateTime = DateTime.Parse("01/02/2017");
 
-        public WasteManagementEventEntity CreateExceptionEntity()
+        public WasteManagementEventEntity CreateWasteManagementEvent()
         {
 
-            var urls = new List<PictureUrlEntity>
+            var urls = new List<ImageEntity>
             {
-                new PictureUrlEntity
+                new ImageEntity
                 {
-                    Url = Url2
+                    ImageURL = Url2
                 },
-                new PictureUrlEntity
+                new ImageEntity
                 {
-                    Url = Url1
+                    ImageURL = Url1
                 }
             };
 
-            var videoUrls = new List<VideoUrlEntity>
+            var videoUrls = new List<VideoEntity>
             {
-                new VideoUrlEntity()
+                new VideoEntity()
                 {
                     Altitude = Altitude,
                     StartDateTime = VideoStartDateTime,
@@ -63,8 +66,8 @@ namespace ExceptionAPITest.Models
                     Longitude = VideoLongitude,
                     Speed = Speed,
                     MDTUrl = "www.yahoo.com/video1",
-                    Url = "www.yahoo.com/video1",
-                    Camera = 1
+                    VideoURL = "www.yahoo.com/video1",
+                    CameraChannel = 1
                 }
             };
 
@@ -75,7 +78,7 @@ namespace ExceptionAPITest.Models
                 AccountId = AccountId,
                 EventType = EventType,
                 TransactionId = TransactionId,
-                DateTime = System.DateTime.Now,
+                DateTime = System.DateTime.Now.ToUniversalTime(),
                 Longitude = Longitude,
                 Latitude = Latitude,
                 Street1 = Street1,
@@ -84,18 +87,21 @@ namespace ExceptionAPITest.Models
                 State = State,
                 ZipCode = ZipCode,
                 Country = Country,
+                ContainerColor = ContainerColor,
+                ContainerSize = ContainerSize,
 
-                ExceptionDetailsEntity = new ExceptionDetailsEntity()
+                ExceptionDetails = new ExceptionDetailsEntity()
                 {
                     Type = ExceptiuonType,
-                    Color = ExceptionColor,
-                    Size = ExceptionSize,
                     Description = ExceptionDescription,
                     Notes = ExceptionNotes,
+                    MaximumWeightAllowed = MaximumWeightAllowed,
+                    ActualWeight = ActualWeight,
+                    WeightUnits = WeightUnits
                 },
               
-                PictureUrls = urls,
-                VideoUrls = videoUrls
+                Images = urls,
+                Videos = videoUrls
             };
 
             return wasteManagementEventEntity;
@@ -119,10 +125,11 @@ namespace ExceptionAPITest.Models
                 ExceptionDetails = new ExceptionDetails()
                     {
                         Type = ExceptiuonType,
-                        Color = ExceptionColor,
-                        Size = ExceptionSize,
                         Description = ExceptionDescription,
                         Notes = ExceptionNotes,
+                        MaximumWeightAllowed = MaximumWeightAllowed,
+                        ActualWeight = ActualWeight,
+                        WeightUnits = WeightUnits,
                         PictureUrls = new string[] { Url1, Url2 }
                     },
 
@@ -150,7 +157,9 @@ namespace ExceptionAPITest.Models
                 TransactionId = TransactionId,
                 DateTime = System.DateTime.Now,
                 Longitude = Longitude,
-                Latitude = Latitude
+                Latitude = Latitude,
+                ContainerColor = ContainerColor,
+                ContainerSize = ContainerSize,
             };
             return wasteManagementEventModel;
         }

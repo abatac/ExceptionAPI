@@ -37,27 +37,30 @@ namespace ExceptionAPITest.Models
             Assert.AreEqual(exceptionModel.Address.ZipCode, result.ZipCode);
             Assert.AreEqual(exceptionModel.Address.Country, result.Country);
 
-            Assert.AreEqual(exceptionModel.ExceptionDetails.Type, result.ExceptionDetailsEntity.Type);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.Color, result.ExceptionDetailsEntity.Color);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.Size, result.ExceptionDetailsEntity.Size);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.Description, result.ExceptionDetailsEntity.Description);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.Notes, result.ExceptionDetailsEntity.Notes);
-            Assert.IsTrue(result.PictureUrls.Any(item => item.Url == TestDataCreator.Url1));
-            Assert.IsTrue(result.PictureUrls.Any(item => item.Url == TestDataCreator.Url2));
+            Assert.AreEqual(exceptionModel.ExceptionDetails.Type, result.ExceptionDetails.Type);
+            Assert.AreEqual(exceptionModel.ContainerColor, result.ContainerColor);
+            Assert.AreEqual(exceptionModel.ContainerSize, result.ContainerSize);
+            Assert.AreEqual(exceptionModel.ExceptionDetails.Description, result.ExceptionDetails.Description);
+            Assert.AreEqual(exceptionModel.ExceptionDetails.Notes, result.ExceptionDetails.Notes);
+            Assert.AreEqual(exceptionModel.ExceptionDetails.MaximumWeightAllowed, result.ExceptionDetails.MaximumWeightAllowed);
+            Assert.AreEqual(exceptionModel.ExceptionDetails.ActualWeight, result.ExceptionDetails.ActualWeight);
+            Assert.AreEqual(exceptionModel.ExceptionDetails.WeightUnits, result.ExceptionDetails.WeightUnits);
+            Assert.IsTrue(result.Images.Any(item => item.ImageURL == TestDataCreator.Url1));
+            Assert.IsTrue(result.Images.Any(item => item.ImageURL == TestDataCreator.Url2));
 
 
             VideoUrl videoUrl = exceptionModel.VideoUrls.First();
-            VideoUrlEntity videoUrlEntity = result.VideoUrls.First();
+            VideoEntity videoUrlEntity = result.Videos.First();
 
             Assert.AreEqual(videoUrl.Heading, videoUrlEntity.Heading);
             Assert.AreEqual(videoUrl.Latitude, videoUrlEntity.Latitude);
             Assert.AreEqual(videoUrl.Longitude, videoUrlEntity.Longitude);
             Assert.AreEqual(videoUrl.MDTUrl, videoUrlEntity.MDTUrl);
-            Assert.AreEqual(videoUrl.Url, videoUrlEntity.Url);
+            Assert.AreEqual(videoUrl.Url, videoUrlEntity.VideoURL);
             Assert.AreEqual(videoUrl.Speed, videoUrlEntity.Speed);
             Assert.AreEqual(videoUrl.EndDateTime, videoUrlEntity.EndDateTime);
             Assert.AreEqual(videoUrl.StartDateTime, videoUrlEntity.StartDateTime);
-            Assert.AreEqual(videoUrl.Camera, videoUrlEntity.Camera);
+            Assert.AreEqual(videoUrl.Camera, videoUrlEntity.CameraChannel);
 
 
         }
@@ -66,7 +69,7 @@ namespace ExceptionAPITest.Models
         public void TestTransformToExceptionModel()
         {
 
-            WasteManagementEventEntity wasteManagementEventEntity = _testData.CreateExceptionEntity();
+            WasteManagementEventEntity wasteManagementEventEntity = _testData.CreateWasteManagementEvent();
 
             WasteManagementEvent result = _transformer.TransformToExceptionModel(wasteManagementEventEntity);
 
@@ -86,28 +89,31 @@ namespace ExceptionAPITest.Models
             Assert.AreEqual(wasteManagementEventEntity.ZipCode, result.Address.ZipCode);
             Assert.AreEqual(wasteManagementEventEntity.Country, result.Address.Country);
 
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetailsEntity.Type, result.ExceptionDetails.Type);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetailsEntity.Color, result.ExceptionDetails.Color);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetailsEntity.Size, result.ExceptionDetails.Size);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetailsEntity.Description, result.ExceptionDetails.Description);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetailsEntity.Notes, result.ExceptionDetails.Notes);
+            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.Type, result.ExceptionDetails.Type);
+            Assert.AreEqual(wasteManagementEventEntity.ContainerColor, result.ContainerColor);
+            Assert.AreEqual(wasteManagementEventEntity.ContainerSize, result.ContainerSize);
+            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.Description, result.ExceptionDetails.Description);
+            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.Notes, result.ExceptionDetails.Notes);
+            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.MaximumWeightAllowed, result.ExceptionDetails.MaximumWeightAllowed);
+            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.ActualWeight, result.ExceptionDetails.ActualWeight);
+            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.WeightUnits, result.ExceptionDetails.WeightUnits);
 
             List<string> urls = new List<string>(result.ExceptionDetails.PictureUrls);
             Assert.IsTrue(urls.Any(item => item == TestDataCreator.Url1));
             Assert.IsTrue(urls.Any(item => item == TestDataCreator.Url2));
 
             VideoUrl videoUrl = result.VideoUrls.First();
-            VideoUrlEntity videoUrlEntity = wasteManagementEventEntity.VideoUrls.First();
+            VideoEntity videoUrlEntity = wasteManagementEventEntity.Videos.First();
 
             Assert.AreEqual(videoUrl.Heading, videoUrlEntity.Heading);
             Assert.AreEqual(videoUrl.Latitude, videoUrlEntity.Latitude);
             Assert.AreEqual(videoUrl.Longitude, videoUrlEntity.Longitude);
             Assert.AreEqual(videoUrl.MDTUrl, videoUrlEntity.MDTUrl);
-            Assert.AreEqual(videoUrl.Url, videoUrlEntity.Url);
+            Assert.AreEqual(videoUrl.Url, videoUrlEntity.VideoURL);
             Assert.AreEqual(videoUrl.Speed, videoUrlEntity.Speed);
             Assert.AreEqual(videoUrl.EndDateTime, videoUrlEntity.EndDateTime);
             Assert.AreEqual(videoUrl.StartDateTime, videoUrlEntity.StartDateTime);
-            Assert.AreEqual(videoUrl.Camera, videoUrlEntity.Camera);
+            Assert.AreEqual(videoUrl.Camera, videoUrlEntity.CameraChannel);
         }
 
     }

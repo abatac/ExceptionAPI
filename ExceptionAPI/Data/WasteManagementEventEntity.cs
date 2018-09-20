@@ -60,10 +60,18 @@ namespace ExceptionAPI.Data
         [Required]
         public DateTime DateCreated { get; set; }
 
-        public ExceptionDetailsEntity ExceptionDetailsEntity { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string ContainerColor { get; set; }
 
-        public ICollection<PictureUrlEntity> PictureUrls { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string ContainerSize { get; set; }
 
-        public ICollection<VideoUrlEntity> VideoUrls { get; set; }
+        public ExceptionDetailsEntity ExceptionDetails { get; set; }
+
+        public ICollection<ImageEntity> Images { get; set; }
+
+        public ICollection<VideoEntity> Videos { get; set; }
     }
 }

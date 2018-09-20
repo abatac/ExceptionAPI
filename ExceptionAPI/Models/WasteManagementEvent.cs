@@ -36,8 +36,18 @@ namespace ExceptionAPI.Models
         [MaxLength(50)]
         public string TransactionId { get; set; }
 
-        [JsonProperty("date_time")]
-        [Display(Name = "date_time")]
+        [JsonProperty("container_color")]
+        [Display(Name = "container_color")]
+        [MaxLength(50)]
+        public string ContainerColor { get; set; }
+
+        [JsonProperty("container_size")]
+        [Display(Name = "container_size")]
+        [MaxLength(50)]
+        public string ContainerSize { get; set; }
+
+        [JsonProperty("datetime_utc")]
+        [Display(Name = "datetime_utc")]
         public DateTime DateTime { get; set; }
 
         [JsonProperty("address")]

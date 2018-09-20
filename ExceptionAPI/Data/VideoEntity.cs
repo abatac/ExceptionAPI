@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExceptionAPI.Data
 {
-    public class VideoUrlEntity
+    public class VideoEntity
     {
         [Key]
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace ExceptionAPI.Data
         public int Heading { get; set; }
 
         [Required]
-        public int Camera { get; set; }
+        public int CameraChannel { get; set; }
 
         [Required]
         public DateTime StartDateTime { get; set; }
@@ -38,7 +38,7 @@ namespace ExceptionAPI.Data
 
         [Required]
         [MaxLength(500)]
-        public string Url { get; set; }
+        public string VideoURL { get; set; }
 
         public string EventId { get; set; }
         public WasteManagementEventEntity WasteManagementEventEntity { get; set; }
