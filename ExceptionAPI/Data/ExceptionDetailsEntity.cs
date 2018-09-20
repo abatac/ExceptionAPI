@@ -20,16 +20,6 @@ namespace ExceptionAPI.Data
         public string Notes { get; set; }
 
         [Required]
-        public int MaximumWeightAllowed { get; set; }
-
-        [Required]
-        public int ActualWeight { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string WeightUnits { get; set; }
-
-        [Required]
         public string EventId { get; set; }
         public WasteManagementEventEntity WasteManagementEventEntity { get; set; }
     }

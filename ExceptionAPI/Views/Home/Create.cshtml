@@ -1,0 +1,132 @@
+﻿@model ExceptionAPI.Models.WasteManagementEvent
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<br />
+<br />
+<br />
+<h2>@ViewData["Title"]</h2>
+
+<h4>Push a new waste management event.</h4>
+<hr />
+
+@{
+
+    if (ViewData["Success"] != null && (bool)ViewData["Success"])
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong>
+        </div>
+    }
+
+    if (ViewData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            <strong>@ViewData["Error"]</strong>
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vin" class="control-label"></label>
+                <input asp-for="Vin" class="form-control" />
+                <span asp-validation-for="Vin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountId" class="control-label"></label>
+                <input asp-for="AccountId" class="form-control" />
+                <span asp-validation-for="AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventId" class="control-label"></label>
+                <input asp-for="EventId" class="form-control" />
+                <span asp-validation-for="EventId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventType" class="control-label"></label>
+                <input asp-for="EventType" class="form-control" />
+                <span asp-validation-for="EventType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionId" class="control-label"></label>
+                <input asp-for="TransactionId" class="form-control" />
+                <span asp-validation-for="TransactionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContainerColor" class="control-label"></label>
+                <input asp-for="ContainerColor" class="form-control" />
+                <span asp-validation-for="ContainerColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContainerSize" class="control-label"></label>
+                <input asp-for="ContainerSize" class="form-control" />
+                <span asp-validation-for="ContainerSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Street1" class="control-label"></label>
+                <input asp-for="Address.Street1" class="form-control" />
+                <span asp-validation-for="Address.Street1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Street2" class="control-label"></label>
+                <input asp-for="Address.Street2" class="form-control" />
+                <span asp-validation-for="Address.Street2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.City" class="control-label"></label>
+                <input asp-for="Address.City" class="form-control" />
+                <span asp-validation-for="Address.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.State" class="control-label"></label>
+                <input asp-for="Address.State" class="form-control" />
+                <span asp-validation-for="Address.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.ZipCode" class="control-label"></label>
+                <input asp-for="Address.ZipCode" class="form-control" />
+                <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Country" class="control-label"></label>
+                <input asp-for="Address.Country" class="form-control" />
+                <span asp-validation-for="Address.Country" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="button" onclick="location.href='@Url.Action("Create", "Home")'" value="Default Values" class="btn btn-default" />
+                <input type="button" onclick="location.href='@Url.Action("Clear", "Home")'" value="Clear All" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

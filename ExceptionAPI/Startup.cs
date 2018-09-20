@@ -26,7 +26,8 @@ namespace ExceptionAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WasteManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc(options => options.Filters.Add(typeof(ValidateModelAttribute))).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // services.AddMvc(options => options.Filters.Add(typeof(ValidateModelAttribute))).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -45,7 +46,6 @@ namespace ExceptionAPI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,7 +56,10 @@ namespace ExceptionAPI
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes => routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Create}/")
+                    );
           
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -68,7 +71,7 @@ namespace ExceptionAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Waste Management API V1");
             });
 
-            app.UseMvc();
+            app.UseStaticFiles();
         }
     }
 }

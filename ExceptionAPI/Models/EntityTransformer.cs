@@ -38,9 +38,6 @@ namespace ExceptionAPI.Models
                     Type = entity.ExceptionDetails.Type,
                     Description = entity.ExceptionDetails.Description,
                     Notes = entity.ExceptionDetails.Notes,
-                    MaximumWeightAllowed = entity.ExceptionDetails.MaximumWeightAllowed,
-                    ActualWeight = entity.ExceptionDetails.ActualWeight,
-                    WeightUnits = entity.ExceptionDetails.WeightUnits,
                     PictureUrls = TransformExceptionUrlEnityListToArray(entity.Images)
                 };
             }
@@ -81,9 +78,6 @@ namespace ExceptionAPI.Models
                 {
                     Type = model.ExceptionDetails.Type,
                     Description = model.ExceptionDetails.Description,
-                    MaximumWeightAllowed = model.ExceptionDetails.MaximumWeightAllowed,
-                    WeightUnits = model.ExceptionDetails.WeightUnits,
-                    ActualWeight = model.ExceptionDetails.ActualWeight,
                     Notes = model.ExceptionDetails.Notes
                 };
                 wasteManagementEventEntity.Images = TransformToExceptionUrlEntityList(model.ExceptionDetails.PictureUrls);
@@ -97,7 +91,7 @@ namespace ExceptionAPI.Models
             return wasteManagementEventEntity;
         }
 
-        protected ICollection<ImageEntity> TransformToExceptionUrlEntityList(String[] pictureUrls)
+        protected ICollection<ImageEntity> TransformToExceptionUrlEntityList(ICollection<string> pictureUrls)
         {
             var urls = new List<ImageEntity>();
             foreach (String pictureUrl in pictureUrls)

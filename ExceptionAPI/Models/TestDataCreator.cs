@@ -8,13 +8,13 @@ namespace ExceptionAPITest.Models
 {
     class TestDataCreator
     {
-        private const string Vin = "123ABC";
-        private const int AccountId = 123456;
+        private const string Vin = "ABC123";
+        private const int AccountId = 1;
         private const string EventId = "2bf1478e-f543-4354-9726-99af3820617b";
         private const string EventType = "ACCEPTED";
-        private const string TransactionId = "8466583";
-        private const double Longitude = 111.123;
-        private const double Latitude = -112.456;
+        private const string TransactionId = "XYZ123";
+        private const double Longitude = 1.0;
+        private const double Latitude = -1.0;
         private const string Street1 = "Street 1";
         private const string Street2 = "Street 2";
         private const string City = "City";
@@ -26,16 +26,16 @@ namespace ExceptionAPITest.Models
         private const string ContainerSize = "Size";
         private const string ExceptionDescription = "Description";
         private const string ExceptionNotes = "Notes";
-        private const int MaximumWeightAllowed = 100;
-        private const int ActualWeight = 99;
+        private const int MaximumWeightAllowed = 1;
+        private const int ActualWeight = 1;
         private const string WeightUnits = "lbs";
         public const string Url1 = "http://yahoo.com";
         public const string Url2 = "http://google.com";
-        private const int Altitude = 100;
+        private const int Altitude = 1;
         private const int Heading = 1;
         private const double VideoLatitude = 1.1;
-        private const double VideoLongitude = 2.2;
-        private const int Speed = 300;
+        private const double VideoLongitude = 1.1;
+        private const int Speed = 1;
         private DateTime VideoStartDateTime = DateTime.Parse("01/01/2017");
         private DateTime VideoEndDateTime = DateTime.Parse("01/02/2017");
 
@@ -94,7 +94,7 @@ namespace ExceptionAPITest.Models
                 {
                     Type = ExceptiuonType,
                     Description = ExceptionDescription,
-                    Notes = ExceptionNotes
+                    Notes = ExceptionNotes,
                 },
               
                 Images = urls,

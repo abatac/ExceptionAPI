@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,9 +7,16 @@ namespace ExceptionAPI.Validation
 {
     public class ValidationResultModel
     {
-        public string Message { get; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
-        public List<ValidationError> Errors { get; }
+        [JsonProperty("errors")]
+        public List<ValidationError> Errors { get; set; }
+
+        public ValidationResultModel()
+        {
+
+        }
 
         public ValidationResultModel(string message)
         {

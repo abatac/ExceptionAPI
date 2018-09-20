@@ -42,9 +42,6 @@ namespace ExceptionAPITest.Models
             Assert.AreEqual(exceptionModel.ContainerSize, result.ContainerSize);
             Assert.AreEqual(exceptionModel.ExceptionDetails.Description, result.ExceptionDetails.Description);
             Assert.AreEqual(exceptionModel.ExceptionDetails.Notes, result.ExceptionDetails.Notes);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.MaximumWeightAllowed, result.ExceptionDetails.MaximumWeightAllowed);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.ActualWeight, result.ExceptionDetails.ActualWeight);
-            Assert.AreEqual(exceptionModel.ExceptionDetails.WeightUnits, result.ExceptionDetails.WeightUnits);
             Assert.IsTrue(result.Images.Any(item => item.ImageURL == TestDataCreator.Url1));
             Assert.IsTrue(result.Images.Any(item => item.ImageURL == TestDataCreator.Url2));
 
@@ -94,9 +91,6 @@ namespace ExceptionAPITest.Models
             Assert.AreEqual(wasteManagementEventEntity.ContainerSize, result.ContainerSize);
             Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.Description, result.ExceptionDetails.Description);
             Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.Notes, result.ExceptionDetails.Notes);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.MaximumWeightAllowed, result.ExceptionDetails.MaximumWeightAllowed);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.ActualWeight, result.ExceptionDetails.ActualWeight);
-            Assert.AreEqual(wasteManagementEventEntity.ExceptionDetails.WeightUnits, result.ExceptionDetails.WeightUnits);
 
             List<string> urls = new List<string>(result.ExceptionDetails.PictureUrls);
             Assert.IsTrue(urls.Any(item => item == TestDataCreator.Url1));
