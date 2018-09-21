@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExceptionAPI.Models
+namespace WasteManagementAPI.Models
 {
     public class WasteManagementEvent
     {

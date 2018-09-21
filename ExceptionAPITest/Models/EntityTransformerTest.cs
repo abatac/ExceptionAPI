@@ -1,5 +1,5 @@
-using ExceptionAPI.Data;
-using ExceptionAPI.Models;
+using WasteManagementAPI.Data;
+using WasteManagementAPI.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;

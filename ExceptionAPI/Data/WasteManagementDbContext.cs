@@ -1,7 +1,7 @@
-﻿using ExceptionAPI.Models;
+﻿using WasteManagementAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExceptionAPI.Data
+namespace WasteManagementAPI.Data
 {
     public class WasteManagementDbContext : DbContext
     {

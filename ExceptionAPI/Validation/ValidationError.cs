@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ExceptionAPI.Validation
+namespace WasteManagementAPI.Validation
 {
     public class ValidationError
     {

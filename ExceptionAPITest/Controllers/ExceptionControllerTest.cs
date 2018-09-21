@@ -1,7 +1,7 @@
-﻿using ExceptionAPI.Controllers;
-using ExceptionAPI.Data;
-using ExceptionAPI.Models;
-using ExceptionAPI.Validation;
+﻿using WasteManagementAPI.Controllers;
+using WasteManagementAPI.Data;
+using WasteManagementAPI.Models;
+using WasteManagementAPI.Validation;
 using ExceptionAPITest.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExceptionAPI.Data
+namespace WasteManagementAPI.Data
 {
     public class ImageEntity
     {

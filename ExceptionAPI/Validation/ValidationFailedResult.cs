@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace ExceptionAPI.Validation
+namespace WasteManagementAPI.Validation
 {
     public class ValidationFailedResult : ObjectResult
     {

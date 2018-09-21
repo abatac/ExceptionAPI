@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExceptionAPI.Validation
+namespace WasteManagementAPI.Validation
 {
     public class ValidationResultModel
     {

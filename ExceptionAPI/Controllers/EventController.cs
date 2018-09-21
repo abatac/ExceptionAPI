@@ -1,12 +1,12 @@
-﻿using ExceptionAPI.Data;
-using ExceptionAPI.Models;
-using ExceptionAPI.Validation;
+﻿using WasteManagementAPI.Data;
+using WasteManagementAPI.Models;
+using WasteManagementAPI.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExceptionAPI.Controllers
+namespace WasteManagementAPI.Controllers
 {
     [Route("WasteManagementEvent")]
     [ApiController]
