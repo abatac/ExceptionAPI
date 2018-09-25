@@ -1,5 +1,5 @@
-﻿using WasteManagementAPI.Data;
-using WasteManagementAPI.Validation;
+﻿using ExceptionAPI.Data;
+using ExceptionAPI.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace WasteManagementAPI
+namespace ExceptionAPI
 {
     public class Startup
     {

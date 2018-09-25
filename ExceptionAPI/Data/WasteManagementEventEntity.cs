@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace WasteManagementAPI.Data
+namespace ExceptionAPI.Data
 {
     public class WasteManagementEventEntity
     {

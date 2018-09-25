@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace WasteManagementAPI.Validation
+namespace ExceptionAPI.Validation
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {

@@ -1,0 +1,10 @@
+diff a/ExceptionAPI/Startup.cs b/ExceptionAPI/Startup.cs	(rejected hunks)
+@@ -11,7 +11,7 @@
+ using System.IO;
+ using System.Reflection;
+ 
+-namespace ExceptionAPI
++namespace WasteManagementAPI
+ {
+     public class Startup
+     {

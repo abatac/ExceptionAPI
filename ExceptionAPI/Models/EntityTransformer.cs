@@ -1,8 +1,8 @@
-﻿using WasteManagementAPI.Data;
+﻿using ExceptionAPI.Data;
 using System;
 using System.Collections.Generic;
 
-namespace WasteManagementAPI.Models
+namespace ExceptionAPI.Models
 {
     public class EntityTransformer
     {

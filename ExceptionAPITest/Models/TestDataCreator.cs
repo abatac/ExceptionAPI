@@ -1,5 +1,5 @@
-﻿using WasteManagementAPI.Data;
-using WasteManagementAPI.Models;
+﻿using ExceptionAPI.Data;
+using ExceptionAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

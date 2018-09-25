@@ -1,0 +1,103 @@
+﻿@model FleetPrimeTestUI.Util.PaginatedList<Tuple<ExceptionAPI.Data.FleetPrimeTestEvent, ExceptionAPI.Data.WasteManagementEventEntity>>
+
+@{
+    ViewData["Title"] = "Transaction Logs";
+}
+
+<br />
+<br />
+<br />
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Transaction records of events sent to Fleet Prime API</h4>
+    <hr />
+    <form asp-action="Index" method="get" autocomplete="off" class="form-inline">
+        <div class="form-actions no-color">
+            <p>
+                Find by TransactionId: <input type="text" class="form-control" style="width:300px" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">DateTime Sent (UTC)</a>
+                </th>
+                <th>Status</th>
+                <th>Failure Reason</th>
+                <th>TransactionId</th>
+                <th>Vin
+                </th>
+                <th>AccountId
+                </th>
+                <th>EventType
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item1.DateCreated)
+                    </td>
+                    <td>
+                        @if (item.Item1.Success)
+                        {
+                            <span style="color:green">SENT</span>
+                        }
+                        else if (item.Item2 != null)
+                        {
+                            <span style="color:green">RECEIVED</span>
+                        }
+                        else
+                        {
+                            <span style="color:darkred">FAILED</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item1.ErrorMessage)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Item1.TransactionId, "Details", "FleetTestEventList", new { transactionId = item.Item1.TransactionId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item1.Vin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item1.AccountId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item1.EventType)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
+<div>
+</div>

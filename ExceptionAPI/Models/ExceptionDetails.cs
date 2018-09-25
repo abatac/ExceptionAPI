@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WasteManagementAPI.Models
+namespace ExceptionAPI.Models
 {
     public class ExceptionDetails
     {

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasteManagementAPI", "Excep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasteManagementAPITest", "ExceptionAPITest\WasteManagementAPITest.csproj", "{E24C152C-E0EF-4183-873A-D5B02C2EC5B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetPrimeTestUI", "FleetPrimeTestUI\FleetPrimeTestUI.csproj", "{E0701E5C-2995-4778-9C2D-D674C5091B92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E24C152C-E0EF-4183-873A-D5B02C2EC5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E24C152C-E0EF-4183-873A-D5B02C2EC5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E24C152C-E0EF-4183-873A-D5B02C2EC5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0701E5C-2995-4778-9C2D-D674C5091B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0701E5C-2995-4778-9C2D-D674C5091B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0701E5C-2995-4778-9C2D-D674C5091B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0701E5C-2995-4778-9C2D-D674C5091B92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,11 @@
-﻿using WasteManagementAPI.Data;
+﻿using ExceptionAPI.Data;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace WasteManagementAPI
+namespace ExceptionAPI
 {
     public class Program
     {

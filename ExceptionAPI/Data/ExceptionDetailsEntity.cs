@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WasteManagementAPI.Data
+namespace ExceptionAPI.Data
 {
     public class ExceptionDetailsEntity
     {

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WasteManagementAPI.Models
+namespace ExceptionAPI.Models
 {
     public class Address
     {

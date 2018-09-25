@@ -1,0 +1,96 @@
+﻿@model FleetPrimeTestUI.Util.PaginatedList<ExceptionAPI.Data.WasteManagementEventEntity>
+
+@{
+    ViewData["Title"] = "List Event";
+}
+
+<br />
+<br />
+<br />
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>List of all events received from FleetPrime API</h4>
+    <hr />
+    <form asp-action="Index" method="get" autocomplete="off" class="form-inline">
+        <div class="form-actions no-color">
+            <p>
+                Find by TransactionId: <input type="text" class="form-control" style="width:300px" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">DateTime</a>
+                </th>
+                <th>
+                    TransactionId
+                </th>
+                <th>
+                    Vin
+                </th>
+                <th>
+                    AccountId
+                </th>
+                <th>
+                    EventId
+                </th>
+                <th>
+                    EventType
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.TransactionId, "Details", "WasteManagementEventList", new { transactionId = item.TransactionId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventType)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
+<div>
+</div>

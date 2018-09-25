@@ -1,7 +1,7 @@
-﻿using WasteManagementAPI.Models;
+﻿using ExceptionAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace WasteManagementAPI.Data
+namespace ExceptionAPI.Data
 {
     public class WasteManagementDbContext : DbContext
     {
@@ -17,9 +17,12 @@ namespace WasteManagementAPI.Data
         public virtual DbSet<ImageEntity> Images { get; set; }
         public virtual DbSet<VideoEntity> Videos { get; set; }
         public virtual DbSet<ExceptionDetailsEntity> ExceptionDetails { get; set; }
+        public virtual DbSet<FleetPrimeTestEvent> EventLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<FleetPrimeTestEvent>().ToTable("EventLogs");
+
             modelBuilder.Entity<WasteManagementEventEntity>().ToTable("WasteManagementEvent");
             modelBuilder.Entity<WasteManagementEventEntity>().HasOne(wme => wme.ExceptionDetails);
             modelBuilder.Entity<WasteManagementEventEntity>().HasMany(wme => wme.Images);
