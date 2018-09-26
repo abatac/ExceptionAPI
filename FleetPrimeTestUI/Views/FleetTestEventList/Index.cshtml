@@ -10,7 +10,13 @@
 <h2>@ViewData["Title"]</h2>
 
 <div>
-    <h4>Transaction records of events sent to Fleet Prime API</h4>
+    <h4>Data sent to Fleet Prime API.</h4>
+    STATUS
+    <ul>
+        <li><span style="color:green">SENT</span> - Data was successfully pushed to FleetPrime API</li>
+        <li><span style="color:green">RECEIVED</span> - Already received a callback from FleetPrime API</li>
+        <li><span style="color:darkred">FAILED</span> - There's an error while sending data to FleetPrime API</li>
+    </ul>
     <hr />
     <form asp-action="Index" method="get" autocomplete="off" class="form-inline">
         <div class="form-actions no-color">
@@ -46,13 +52,13 @@
                         @Html.DisplayFor(modelItem => item.Item1.DateCreated)
                     </td>
                     <td>
-                        @if (item.Item1.Success)
-                        {
-                            <span style="color:green">SENT</span>
-                        }
-                        else if (item.Item2 != null)
+                        @if (item.Item2 != null)
                         {
                             <span style="color:green">RECEIVED</span>
+                        }
+                        else if (item.Item1.Success)
+                        {
+                            <span style="color:green">SENT</span>
                         }
                         else
                         {

@@ -65,6 +65,8 @@ namespace ExceptionAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Waste Management API V1");
             });
+
+            app.UseMvc();
         }
     }
 }

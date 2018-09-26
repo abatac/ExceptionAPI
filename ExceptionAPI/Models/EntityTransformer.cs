@@ -26,13 +26,16 @@ namespace ExceptionAPI.Models
                     Country = entity.Country,
                 },
                 Latitude = entity.Latitude,
-                Longitude = entity.Longitude
-            };
+                Longitude = entity.Longitude,
+                ContainerColor = entity.ContainerColor,
+                ContainerSize = entity.ContainerSize
+        };
+
+
      
             if (entity.ExceptionDetails != null)
             {
-                wasteManagementEventModel.ContainerColor = entity.ContainerColor;
-                wasteManagementEventModel.ContainerSize = entity.ContainerSize;
+               
                 wasteManagementEventModel.ExceptionDetails = new ExceptionDetails
                 {
                     Type = entity.ExceptionDetails.Type,
