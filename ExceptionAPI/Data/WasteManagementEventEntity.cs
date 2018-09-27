@@ -68,6 +68,9 @@ namespace ExceptionAPI.Data
         [MaxLength(50)]
         public string ContainerSize { get; set; }
 
+        [MaxLength(100)]
+        public string VideoStatus { get; set; }
+
         public ExceptionDetailsEntity ExceptionDetails { get; set; }
 
         public ICollection<ImageEntity> Images { get; set; }

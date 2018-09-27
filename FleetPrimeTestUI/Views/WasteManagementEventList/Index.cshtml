@@ -42,32 +42,37 @@
                 <th>
                     EventType
                 </th>
+                <th>
+                    VideoStatus
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateTime)
-                    </td>
-                    <td>
-                        @Html.ActionLink(item.TransactionId, "Details", "WasteManagementEventList", new { transactionId = item.TransactionId })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Vin)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AccountId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventType)
-                    </td>
-
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.ActionLink(item.TransactionId, "Details", "WasteManagementEventList", new { transactionId = item.TransactionId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VideoStatus)
+                </td>
+            </tr>
             }
         </tbody>
     </table>

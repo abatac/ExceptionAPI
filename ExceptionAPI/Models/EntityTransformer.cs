@@ -28,7 +28,8 @@ namespace ExceptionAPI.Models
                 Latitude = entity.Latitude,
                 Longitude = entity.Longitude,
                 ContainerColor = entity.ContainerColor,
-                ContainerSize = entity.ContainerSize
+                ContainerSize = entity.ContainerSize,
+                VideoStatus = entity.VideoStatus
         };
 
 
@@ -110,6 +111,11 @@ namespace ExceptionAPI.Models
         public ICollection<VideoEntity> TransformToVideoUrlEntityList(string eventId, ICollection<VideoUrl> videoUrls)
         {
             var urls = new List<VideoEntity>();
+
+            if (videoUrls == null)
+            {
+                return urls;
+            }
 
             foreach (VideoUrl videoUrl in videoUrls)
             {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using WasteManagementAPI.Models;
 
 namespace ExceptionAPI.Controllers
 {
@@ -80,19 +81,27 @@ namespace ExceptionAPI.Controllers
         /// Updates the video urls of the specified Event record
         /// </summary>
         /// <param name="eventId">The EventId of the record to be updated.</param>
-        /// <param name="data">Request data to be submitted. Array of VideoUrl model.</param>
+        /// <param name="data">Request data to be submitted. Video model</param>
         /// <response code="200">Success. Event record is updated.</response>
         /// <response code="422">Unprocessable entity. Validation error.</response>
         [HttpPost("Update/{eventId}")]
         [Produces("application/json")]
         [ProducesResponseType(200)]
         [ProducesResponseType(422, Type = typeof(ValidationResultModel))]
-        public ActionResult Update(string eventId, [FromBody] ICollection<VideoUrl> data)
+        public ActionResult Update(string eventId, [FromBody] Video data)
         {
             var isRecordExists = _dbContext.WasteManagementEvents.Any(o => o.EventId == eventId);
             if (isRecordExists) {
-                ICollection<VideoEntity> videoUrls = _transformer.TransformToVideoUrlEntityList(eventId, data);
-                _dbContext.Videos.AddRange(videoUrls);
+
+                WasteManagementEventEntity wasteManagementEvent = _dbContext.WasteManagementEvents.Where(o => o.EventId == eventId).First();
+                wasteManagementEvent.VideoStatus = data.VideoStatus;
+                _dbContext.WasteManagementEvents.Update(wasteManagementEvent);
+                
+                ICollection<VideoEntity> videoUrls = _transformer.TransformToVideoUrlEntityList(eventId, data.VideoUrls);
+                if (videoUrls.Count() != 0)
+                {
+                    _dbContext.Videos.AddRange(videoUrls);
+                }
                 _dbContext.SaveChanges();
                 return new OkResult();
             } else

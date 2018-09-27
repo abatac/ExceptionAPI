@@ -63,6 +63,11 @@ namespace ExceptionAPI.Models
         [Display(Name = "longitude")]
         public double Longitude { get; set; }
 
+        [JsonProperty("video_status")]
+        [Display(Name = "video_status")]
+        [MaxLength(100)]
+        public string VideoStatus { get; set; }
+
         [JsonProperty("exception_details")]
         [Display(Name = "exception_details")]
         public ExceptionDetails ExceptionDetails { get; set; }

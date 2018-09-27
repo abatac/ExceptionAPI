@@ -59,7 +59,7 @@ namespace FleetPrimeTestUI.Controllers
                     eventLogs = eventLogs.OrderByDescending(s => s.DateCreated);
                     break;
                 default:
-                    eventLogs = eventLogs.OrderBy(s => s.DateCreated);
+                    eventLogs = eventLogs.OrderByDescending(s => s.DateCreated);
                     break;
             }
 
