@@ -6,16 +6,19 @@ using ExceptionAPI.Data;
 using System.Threading.Tasks;
 using System;
 using FleetPrimeTestUI.Util;
+using Microsoft.Extensions.Options;
 
 namespace FleetPrimeTestUI.Controllers
 {
     public class WasteManagementEventListController : Controller
     {
         private readonly WasteManagementDbContext _dbContext;
+        private readonly IOptions<ServiceSettings> _serviceSettings;
 
-        public WasteManagementEventListController(WasteManagementDbContext dbContext)
+        public WasteManagementEventListController(IOptions<ServiceSettings> serviceSettings, WasteManagementDbContext dbContext)
         {
             _dbContext = dbContext;
+            _serviceSettings = serviceSettings;
         }
 
         public ActionResult Details(string transactionId)
@@ -31,6 +34,7 @@ namespace FleetPrimeTestUI.Controllers
 
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewData["FleetprimeAwareUrl"] = _serviceSettings.Value.FleetprimeAwareUrl;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["DateSortParm"] = sortOrder == "DateCreated" ? "date_desc" : "DateCreated";
 
@@ -45,7 +49,7 @@ namespace FleetPrimeTestUI.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            var wasteManagementEvents = _dbContext.WasteManagementEvents.Select(o => o);
+            var wasteManagementEvents = _dbContext.WasteManagementEvents.Include(o => o.ExceptionDetails).Select(o => o);
                            
 
             if (!String.IsNullOrEmpty(searchString))
@@ -57,13 +61,13 @@ namespace FleetPrimeTestUI.Controllers
             {
 
                 case "DateCreated":
-                    wasteManagementEvents = wasteManagementEvents.OrderBy(s => s.DateCreated);
+                    wasteManagementEvents = wasteManagementEvents.OrderBy(s => s.DateTime);
                     break;
                 case "date_desc":
-                    wasteManagementEvents = wasteManagementEvents.OrderByDescending(s => s.DateCreated);
+                    wasteManagementEvents = wasteManagementEvents.OrderByDescending(s => s.DateTime);
                     break;
                 default:
-                    wasteManagementEvents = wasteManagementEvents.OrderBy(s => s.DateCreated);
+                    wasteManagementEvents = wasteManagementEvents.OrderByDescending(s => s.DateTime);
                     break;
             }
 

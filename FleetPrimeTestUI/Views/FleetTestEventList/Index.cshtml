@@ -31,16 +31,19 @@
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">DateTime Sent (UTC)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">DateTimeSent</a>
                 </th>
                 <th>Status</th>
                 <th>Failure Reason</th>
                 <th>TransactionId</th>
-                <th>Vin
+                <th>
+                    Vin
                 </th>
-                <th>AccountId
+                <th>
+                    AccountId
                 </th>
-                <th>EventType
+                <th>
+                    EventType
                 </th>
             </tr>
         </thead>
@@ -49,7 +52,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Item1.DateCreated)
+                        <span data-date="@item.Item1.DateCreated">@item.Item1.DateCreated</span>
                     </td>
                     <td>
                         @if (item.Item2 != null)
@@ -72,7 +75,10 @@
                         @Html.ActionLink(item.Item1.TransactionId, "Details", "FleetTestEventList", new { transactionId = item.Item1.TransactionId })
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Item1.Vin)
+                        <div style="text-overflow:ellipsis; overflow:hidden; width:200px;">
+                            @Html.DisplayFor(modelItem => item.Item1.Vin)
+                        </div>
+                       
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Item1.AccountId)

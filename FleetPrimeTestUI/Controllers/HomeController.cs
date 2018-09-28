@@ -40,16 +40,18 @@ namespace FleetPrimeTestUI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Save(IFormCollection form, EventViewData model)
         {
-            var postData = CreateEvent(form);
+          
             bool isSuccessful = false;
             string errorMessage = "";
-           
+            Event postData = null;
             try
             {
+
+                postData = CreateEvent(form);
+
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(_serviceSettings.Value.MainUrl);
-                    //"Content-Type": "application/json"
 
                     var jsonInString = JsonConvert.SerializeObject(postData);
                     var responseTask = client.PostAsync("wm-iot", new StringContent(jsonInString, Encoding.UTF8, "application/json"));
@@ -66,23 +68,36 @@ namespace FleetPrimeTestUI.Controllers
                         readTask.Wait();
                         var modelResult = readTask.Result;
 
-                        errorMessage = string.Format("The api server ( {0} ) returned an error: {1}", _serviceSettings.Value.MainUrl.ToString(), modelResult.Message);
+                        string errorMessages = "";
+                        if (modelResult.Messages != null)
+                        {
+                            errorMessages = String.Join(",", modelResult.Messages.Select(i => i.ToString()).ToArray());
+                        }
+                        
+                        errorMessage = string.Format("The api server ( {0} ) returned an error: {1} , {2}", _serviceSettings.Value.MainUrl.ToString(), modelResult.Status, errorMessages);
                         ViewData.Add("Error", errorMessage);
                     }
                 }
-
                 return View("Index", _testData.CreateEventViewData());
             }
-            catch(Exception e)
+            catch (FormatException fe)
+            {
+                ViewData.Add("Error", "Please specify the Account Id");
+                return View("Index", _testData.CreateEventViewData());
+            }
+            catch (Exception e)
             {
                 errorMessage = string.Format("Cannot connect to the api server ( {0} ). {1}", _serviceSettings.Value.MainUrl.ToString(), e.Message);
                 ViewData.Add("Error", errorMessage);
                 return View("Index", _testData.CreateEventViewData());
             } finally
             {
-                var eventLog = TransformEventToEventLog(isSuccessful, errorMessage, postData);
-                _wasteManagementDbContext.EventLogs.Add(eventLog);
-                _wasteManagementDbContext.SaveChanges();
+                if (postData != null)
+                {
+                    var eventLog = TransformEventToEventLog(isSuccessful, errorMessage, postData);
+                    _wasteManagementDbContext.EventLogs.Add(eventLog);
+                    _wasteManagementDbContext.SaveChanges();
+                }
             }
                 
         }

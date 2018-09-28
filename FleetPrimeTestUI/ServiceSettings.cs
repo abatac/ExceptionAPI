@@ -8,5 +8,6 @@ namespace FleetPrimeTestUI
     public class ServiceSettings
     {
         public string MainUrl { get; set; }
+        public string FleetprimeAwareUrl { get; set; }
     }
 }

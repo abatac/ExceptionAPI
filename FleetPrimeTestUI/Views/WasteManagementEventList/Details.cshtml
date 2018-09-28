@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.DateTime)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DateTime)
+            <span data-date="@Model.DateTime">@Html.DisplayFor(model => model.DateTime)</span>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Latitude)
@@ -92,7 +92,7 @@
             @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DateCreated)
+            <span data-date="@Model.DateCreated">@Html.DisplayFor(model => model.DateCreated)</span>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ContainerColor)
@@ -181,13 +181,13 @@
                     StartDateTime
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Videos.ElementAt(i).StartDateTime)
+                    <span data-date="@Model.Videos.ElementAt(i).StartDateTime">@Html.DisplayFor(model => model.Videos.ElementAt(i).StartDateTime)</span>
                 </dd>
                 <dt>
                     EndDateTime
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Videos.ElementAt(i).EndDateTime)
+                    <span data-date="@Model.Videos.ElementAt(i).EndDateTime">@Html.DisplayFor(model => model.Videos.ElementAt(i).EndDateTime)</span>
                 </dd>
                 <dt>
                     Latitude
@@ -222,3 +222,4 @@
 <div>
     <a asp-action="Index" asp-controller="WasteManagementEventList">Back to List</a>
 </div>
+

@@ -37,13 +37,16 @@
                     AccountId
                 </th>
                 <th>
-                    EventId
+                    Notes
                 </th>
                 <th>
                     EventType
                 </th>
                 <th>
                     VideoStatus
+                </th>
+                <th>
+                    
                 </th>
             </tr>
         </thead>
@@ -52,7 +55,7 @@
             {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
+                    <span data-date="@item.DateTime">@Html.DisplayFor(modelItem => item.DateTime)</span>
                 </td>
                 <td>
                     @Html.ActionLink(item.TransactionId, "Details", "WasteManagementEventList", new { transactionId = item.TransactionId })
@@ -64,13 +67,16 @@
                     @Html.DisplayFor(modelItem => item.AccountId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EventId)
+                    @Html.DisplayFor(modelItem => item.ExceptionDetails.Notes)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EventType)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.VideoStatus)
+                </td>
+                <td>
+                    <a href="@(ViewData["FleetprimeAwareUrl"]+item.EventId)" target="_self">Details</a>
                 </td>
             </tr>
             }

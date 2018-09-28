@@ -1,10 +1,14 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace FleetPrimeTestUI.Models
 {
     public class ErrorModel
     {
-        [JsonProperty("message")]
-        public string Message { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("messages")]
+        public ICollection<string> Messages { get; set; }
     }
 }
