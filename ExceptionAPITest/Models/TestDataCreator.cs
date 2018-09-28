@@ -9,7 +9,7 @@ namespace ExceptionAPITest.Models
     class TestDataCreator
     {
         private const string Vin = "123ABC";
-        private const int AccountId = 123456;
+        private const string AccountId = "123456";
         private const string EventId = "2bf1478e-f543-4354-9726-99af3820617b";
         private const string EventType = "ACCEPTED";
         private const string TransactionId = "8466583";

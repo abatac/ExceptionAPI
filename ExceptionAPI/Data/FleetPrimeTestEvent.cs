@@ -14,7 +14,7 @@ namespace ExceptionAPI.Data
 
         public string Vin { get; set; }
 
-        public long AccountId { get; set; }
+        public string AccountId { get; set; }
 
         public string EventType { get; set; }
 

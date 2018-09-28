@@ -16,7 +16,7 @@ namespace ExceptionAPI.Models
         [JsonProperty("account_id")]
         [Display(Name = "account_id")]
         [Required]
-        public long AccountId { get; set; }
+        public string AccountId { get; set; }
 
         [JsonProperty("event_id")]
         [Display(Name = "event_id")]
