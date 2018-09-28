@@ -79,13 +79,7 @@ namespace FleetPrimeTestUI.Controllers
                     }
                 }
                 return View("Index", _testData.CreateEventViewData());
-            }
-            catch (FormatException fe)
-            {
-                ViewData.Add("Error", "Please specify the Account Id");
-                return View("Index", _testData.CreateEventViewData());
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 errorMessage = string.Format("Cannot connect to the api server ( {0} ). {1}", _serviceSettings.Value.MainUrl.ToString(), e.Message);
                 ViewData.Add("Error", errorMessage);
@@ -117,7 +111,7 @@ namespace FleetPrimeTestUI.Controllers
             return new Event()
             {
                 Vin = form["Vin"],
-                AccountId = int.Parse(form["AccountId"]),
+                AccountId = form["AccountId"],
                 EventType = form["EventType"],
                 TransactionId = transactionId,
                 DateTime = DateTime.Now.ToUniversalTime(),

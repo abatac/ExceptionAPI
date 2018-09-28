@@ -18,7 +18,7 @@ namespace FleetPrimeTestUI.Models
         public string TransactionId { get; set; }
 
         [JsonProperty("account_id")]
-        public long AccountId { get; set; }
+        public string AccountId { get; set; }
 
         [JsonProperty("container_color")]
         public string ContainerColor { get; set; }
