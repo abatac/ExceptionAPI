@@ -16,6 +16,7 @@ namespace ExceptionAPI.Data
         public string Vin { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string AccountId { get; set; }
 
         [Required]
