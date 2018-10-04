@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ExceptionAPI.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FleetPrimeTestUI
 {
@@ -29,14 +30,26 @@ namespace FleetPrimeTestUI
             });
 
             services.AddDbContext<WasteManagementDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                   .AddCookie(options =>
+                   {
+                       options.LoginPath = "/Login/UserLogin/";
+
+                   });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.Configure<ServiceSettings>(Configuration.GetSection("ServiceSettings"));
+            services.Configure<UserSettings>(Configuration.GetSection("UserSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

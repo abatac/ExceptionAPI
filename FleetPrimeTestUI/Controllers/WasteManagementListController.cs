@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 using System;
 using FleetPrimeTestUI.Util;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FleetPrimeTestUI.Controllers
 {
+
+    [Authorize]
     public class WasteManagementEventListController : Controller
     {
         private readonly WasteManagementDbContext _dbContext;

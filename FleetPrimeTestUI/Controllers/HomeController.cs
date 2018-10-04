@@ -10,9 +10,12 @@ using System.Net.Http;
 using ExceptionAPI.Data;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FleetPrimeTestUI.Controllers
 {
+
+    [Authorize]
     public class HomeController : Controller
     {
 

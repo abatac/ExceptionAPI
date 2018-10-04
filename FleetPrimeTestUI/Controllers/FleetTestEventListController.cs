@@ -6,9 +6,11 @@ using ExceptionAPI.Data;
 using System.Threading.Tasks;
 using System;
 using FleetPrimeTestUI.Util;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FleetPrimeTestUI.Controllers
 {
+    [Authorize]
     public class FleetTestEventListController : Controller
     {
         private readonly WasteManagementDbContext _dbContext;

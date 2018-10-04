@@ -33,6 +33,12 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Push an event</a></li>
                     <li><a asp-area="" asp-controller="FleetTestEventList" asp-action="Index">Transaction Logs</a></li>
                     <li><a asp-area="" asp-controller="WasteManagementEventList" asp-action="Index">Waste Manage Events</a></li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Login" asp-action="Logout">Logout</a></li>
+                    }
+                   
                 </ul>
             </div>
         </div>
