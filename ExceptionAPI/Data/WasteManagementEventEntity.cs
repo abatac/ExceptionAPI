@@ -59,7 +59,7 @@ namespace ExceptionAPI.Data
         public string Country { get; set; }
 
         [Required]
-        public DateTime DateCreated { get; set; }
+        public DateTime DateReceived { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -68,6 +68,10 @@ namespace ExceptionAPI.Data
         [Required]
         [MaxLength(50)]
         public string ContainerSize { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string ContainerType { get; set; }
 
         [MaxLength(100)]
         public string VideoStatus { get; set; }

@@ -6,6 +6,10 @@ namespace ExceptionAPI.Models
 {
     public class EntityTransformer
     {
+
+        private readonly TimeZoneInfo pstTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+        private readonly TimeZoneInfo utcTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Coordinated Universal Time");
+
         public WasteManagementEvent TransformToExceptionModel(WasteManagementEventEntity entity)
         {
             WasteManagementEvent wasteManagementEventModel = new WasteManagementEvent
@@ -15,7 +19,7 @@ namespace ExceptionAPI.Models
                 EventId = entity.EventId,
                 EventType = entity.EventType,
                 TransactionId = entity.TransactionId,
-                DateTime = entity.DateTime,
+                DateTime = TimeZoneInfo.ConvertTime(entity.DateTime, pstTimeZone, utcTimeZone),
                 Address = new Address()
                 {
                     Street1 = entity.Street1,
@@ -29,7 +33,8 @@ namespace ExceptionAPI.Models
                 Longitude = entity.Longitude,
                 ContainerColor = entity.ContainerColor,
                 ContainerSize = entity.ContainerSize,
-                VideoStatus = entity.VideoStatus
+                VideoStatus = entity.VideoStatus,
+                ContainerType = entity.ContainerType
         };
 
 
@@ -41,6 +46,8 @@ namespace ExceptionAPI.Models
                 {
                     Type = entity.ExceptionDetails.Type,
                     Description = entity.ExceptionDetails.Description,
+                    ContactName = entity.ExceptionDetails.ContactName,
+                    ContactNumber = entity.ExceptionDetails.ContactNumber,
                     Notes = entity.ExceptionDetails.Notes,
                     PictureUrls = TransformExceptionUrlEnityListToArray(entity.Images)
                 };
@@ -62,7 +69,7 @@ namespace ExceptionAPI.Models
                 EventId = model.EventId,
                 EventType = model.EventType,
                 TransactionId = model.TransactionId,
-                DateTime = model.DateTime,
+                DateTime = TimeZoneInfo.ConvertTimeFromUtc(model.DateTime, pstTimeZone),
                 Street1 = model.Address.Street1,
                 Street2 = model.Address.Street2,
                 City = model.Address.City,
@@ -71,9 +78,10 @@ namespace ExceptionAPI.Models
                 Country = model.Address.Country,
                 Latitude = model.Latitude,
                 Longitude = model.Longitude,
-                DateCreated = System.DateTime.Now,
+                DateReceived = TimeZoneInfo.ConvertTimeFromUtc(System.DateTime.UtcNow, pstTimeZone),
                 ContainerColor = model.ContainerColor,
                 ContainerSize = model.ContainerSize,
+                ContainerType = model.ContainerType
             };
 
             if (model.ExceptionDetails != null)
@@ -81,6 +89,8 @@ namespace ExceptionAPI.Models
                 wasteManagementEventEntity.ExceptionDetails = new ExceptionDetailsEntity
                 {
                     Type = model.ExceptionDetails.Type,
+                    ContactName = model.ExceptionDetails.ContactName,
+                    ContactNumber = model.ExceptionDetails.ContactNumber,
                     Description = model.ExceptionDetails.Description,
                     Notes = model.ExceptionDetails.Notes
                 };

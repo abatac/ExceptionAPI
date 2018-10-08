@@ -14,6 +14,15 @@ namespace ExceptionAPI.Models
         [MaxLength(50)]
         public string Type { get; set; }
 
+        [JsonProperty("contact_name")]
+        [Display(Name = "contact_name")]
+        [MaxLength(20)]
+        public string ContactName { get; set; }
+
+        [JsonProperty("contact_number")]
+        [Display(Name = "contact_number")]
+        public int ContactNumber { get; set; }
+
         [JsonProperty("description")]
         [Display(Name = "description")]
         [MaxLength(500)]

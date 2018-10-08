@@ -15,6 +15,11 @@ namespace ExceptionAPI.Data
         [MaxLength(500)]
         public string Description { get; set; }
 
+        [MaxLength(20)]
+        public string ContactName { get; set; }
+
+        public int ContactNumber { get; set; }
+
         [Required]
         [MaxLength(500)]
         public string Notes { get; set; }

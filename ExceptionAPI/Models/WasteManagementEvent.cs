@@ -46,6 +46,11 @@ namespace ExceptionAPI.Models
         [MaxLength(50)]
         public string ContainerSize { get; set; }
 
+        [JsonProperty("container_type")]
+        [Display(Name = "container_type")]
+        [MaxLength(50)]
+        public string ContainerType { get; set; }
+
         [JsonProperty("datetime_utc")]
         [Display(Name = "datetime_utc")]
         public DateTime DateTime { get; set; }
