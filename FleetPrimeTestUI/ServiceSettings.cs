@@ -9,5 +9,6 @@ namespace FleetPrimeTestUI
     {
         public string MainUrl { get; set; }
         public string FleetprimeAwareUrl { get; set; }
+        public string FleetprimeAwareToken { get; set; }
     }
 }

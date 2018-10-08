@@ -11,6 +11,7 @@ using ExceptionAPI.Data;
 using Newtonsoft.Json;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Http.Headers;
 
 namespace FleetPrimeTestUI.Controllers
 {
@@ -55,6 +56,7 @@ namespace FleetPrimeTestUI.Controllers
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(_serviceSettings.Value.MainUrl);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _serviceSettings.Value.FleetprimeAwareToken);
 
                     var jsonInString = JsonConvert.SerializeObject(postData);
                     var responseTask = client.PostAsync("wm-iot", new StringContent(jsonInString, Encoding.UTF8, "application/json"));
