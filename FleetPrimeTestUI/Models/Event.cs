@@ -26,6 +26,9 @@ namespace FleetPrimeTestUI.Models
         [JsonProperty("container_size")]
         public string ContainerSize { get; set; }
 
+        [JsonProperty("container_type")]
+        public string ContainerType { get; set; }
+
         [JsonProperty("datetime_utc")]
         public DateTime DateTime { get; set; }
 

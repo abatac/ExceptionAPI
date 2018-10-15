@@ -55,5 +55,11 @@ namespace ExceptionAPI.Data
         public string ImageURL2 { get; set; }
 
         public string ImageURL3 { get; set; }
+
+        public string ContainerType { get; set; }
+
+        public string ContactName { get; set; }
+
+        public string ContactNumber { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@model ExceptionAPI.Data.WasteManagementEventEntity
 
 @{
+    var pstTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
     ViewData["Title"] = "WasteManagementEvent";
 }
 
@@ -38,7 +39,7 @@
             @Html.DisplayNameFor(model => model.DateTime)
         </dt>
         <dd>
-            <span data-date="@Model.DateTime">@Html.DisplayFor(model => model.DateTime)</span>
+            <span data-date="@TimeZoneInfo.ConvertTime(Model.DateTime, pstTimeZone, TimeZoneInfo.Utc)">@Html.DisplayFor(model => model.DateTime)</span>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Latitude)
@@ -89,10 +90,10 @@
             @Html.DisplayFor(model => model.Country)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
+            @Html.DisplayNameFor(model => model.DateReceived)
         </dt>
         <dd>
-            <span data-date="@Model.DateCreated">@Html.DisplayFor(model => model.DateCreated)</span>
+            <span data-date="@TimeZoneInfo.ConvertTime(Model.DateReceived, pstTimeZone, TimeZoneInfo.Utc)">@Html.DisplayFor(model => model.DateReceived)</span>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ContainerColor)
@@ -105,6 +106,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ContainerSize)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainerType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContainerType)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.VideoStatus)
@@ -126,6 +133,18 @@
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.ExceptionDetails.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExceptionDetails.ContactName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ExceptionDetails.ContactName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExceptionDetails.ContactNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ExceptionDetails.ContactNumber)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.ExceptionDetails.Notes)

@@ -67,6 +67,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Container Type</label>
+                    <input name="ContainerType" class="form-control" value="" />
+                </div>
+
+                <div class="form-group">
                     <label>Address</label>
                     <select name="Address" class="form-control">
                         @foreach (var obj in Model.Addresses)
@@ -86,6 +91,16 @@
                                 <option selected value="@obj.Key">@obj.Key</option>
                             }
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact Name</label>
+                        <input name="ContactName" class="form-control" value="" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input name="ContactNumber" type="number" class="form-control" value="" />
                     </div>
 
                     <div class="form-group">

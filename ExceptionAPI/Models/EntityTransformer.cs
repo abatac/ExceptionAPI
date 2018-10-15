@@ -8,7 +8,6 @@ namespace ExceptionAPI.Models
     {
 
         private readonly TimeZoneInfo pstTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
-        private readonly TimeZoneInfo utcTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Coordinated Universal Time");
 
         public WasteManagementEvent TransformToExceptionModel(WasteManagementEventEntity entity)
         {
@@ -19,7 +18,7 @@ namespace ExceptionAPI.Models
                 EventId = entity.EventId,
                 EventType = entity.EventType,
                 TransactionId = entity.TransactionId,
-                DateTime = TimeZoneInfo.ConvertTime(entity.DateTime, pstTimeZone, utcTimeZone),
+                DateTime = TimeZoneInfo.ConvertTime(entity.DateTime, pstTimeZone, TimeZoneInfo.Utc),
                 Address = new Address()
                 {
                     Street1 = entity.Street1,

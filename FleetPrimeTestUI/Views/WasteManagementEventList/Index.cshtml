@@ -1,6 +1,7 @@
 ﻿@model FleetPrimeTestUI.Util.PaginatedList<ExceptionAPI.Data.WasteManagementEventEntity>
 
 @{
+    var pstTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
     ViewData["Title"] = "List Event";
 }
 
@@ -58,7 +59,7 @@
             {
             <tr>
                 <td>
-                    <span data-date="@item.DateTime">@Html.DisplayFor(modelItem => item.DateTime)</span>
+                    <span data-date="@TimeZoneInfo.ConvertTime(item.DateTime, pstTimeZone ,TimeZoneInfo.Utc)">@Html.DisplayFor(modelItem => item.DateTime)</span>
                 </td>
                 <td>
                     @Html.ActionLink(item.TransactionId, "Details", "WasteManagementEventList", new { transactionId = item.TransactionId })

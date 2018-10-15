@@ -14,6 +14,12 @@ namespace FleetPrimeTestUI.Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("contact_name")]
+        public string ContactName { get; set; }
+
+        [JsonProperty("contact_number")]
+        public int ContactNumber { get; set; }
+
         [JsonProperty("notes")]
         public string Notes { get; set; }
 

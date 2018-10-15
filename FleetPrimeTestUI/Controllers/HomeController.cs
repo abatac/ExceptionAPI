@@ -124,6 +124,7 @@ namespace FleetPrimeTestUI.Controllers
                 Longitude = address.Longitude,
                 ContainerColor = form["ContainerColor"],
                 ContainerSize = form["ContainerSize"],
+                ContainerType = form["ContainerType"],
                 Address = new Address
                 {
                     Street1 = address.Street1,
@@ -142,6 +143,8 @@ namespace FleetPrimeTestUI.Controllers
         {
             string eventType = form["EventType"];
             string rejectReason = form["RejectReason"];
+            string contactName = form["ContactName"];
+            int contactNumber = String.IsNullOrEmpty(form["ContactNumber"]) ? 0 : int.Parse(form["ContactNumber"]);
             string rejectDescription = rejectReasons[form["RejectReason"]];
             string notes = form["Notes"];
             string[] pictureUrls = form["PictureURL"];
@@ -161,6 +164,8 @@ namespace FleetPrimeTestUI.Controllers
                 {
                     Type = rejectReason,
                     Description = rejectDescription,
+                    ContactName = contactName,
+                    ContactNumber = contactNumber,
                     Notes = notes,
                     PictureUrls = urlList
                 };
@@ -192,6 +197,7 @@ namespace FleetPrimeTestUI.Controllers
                 Country = postData.Address.Country,
                 ContainerColor = postData.ContainerColor,
                 ContainerSize = postData.ContainerSize,
+                ContainerType = postData.ContainerType
             };
 
             if (postData.ExceptionDetails != null)
@@ -199,6 +205,8 @@ namespace FleetPrimeTestUI.Controllers
                 eventLog.Type = postData.ExceptionDetails.Type;
                 eventLog.Description = postData.ExceptionDetails.Description;
                 eventLog.Notes = postData.ExceptionDetails.Notes;
+                eventLog.ContactName = postData.ExceptionDetails.ContactName;
+                eventLog.ContactNumber = postData.ExceptionDetails.ContactNumber.ToString();
 
                 for (int i = 0; i < postData.ExceptionDetails.PictureUrls.Count; i++)
                 {
